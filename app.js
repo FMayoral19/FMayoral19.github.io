@@ -107,29 +107,29 @@ const getImages = async() => {
     var Gravedad = (inputValues.value2 * 6.67430e-11) / Math.pow(inputValues.value1, 2) / 9.8;
 
     if (Gravedad >= 0.7 && Gravedad <= 1.3) {
-        resultado.G = "la gravedad es aceptable ya que esta dentro de los parametros que el cuerpo humano podría aguantar ";
+        resultado.G = "Gravity is acceptable as it falls within the parameters that the human body could endure."        ;
         var habitable1 = true;
         score1 = (Gravedad <= 1) ? (Gravedad - 0.7) * 100 / (1 - 0.7) : (1.3 - Gravedad) * 100 / (1.3 - 1);
     } else if (Gravedad < 0.75) {
-        resultado.G = "Su gravedad del planeta lo hace inhabitable ya que es menor que los parámetros que el cuerpo humano podría aguantar. ";
+        resultado.G = "The planet's gravity makes it uninhabitable since it falls below the parameters that the human body could withstand.";
         var habitable1 = false;
     } else {
-        resultado.G = "Su gravedad del planeta lo hace inhabitable ya que es mayor que los parámetros que el cuerpo humano podría aguantar. ";
+        resultado.G = "Due to the planet's gravity, it is uninhabitable, as it exceeds the parameters that the human body could endure.";
         var habitable1 = false;
     }
 
     resultado.Gravedad = Gravedad;
 
     if (inputValues.value3 >= 0.75 && inputValues.value3 <= 1.77) {
-        resultado.temp = "Al encontrarse en la zona habitable, es posible que exista agua líquida en el planeta en forma de grandes océanos como en la Tierra, lo que podría indicar la posibilidad de existencia de vida en el exoplaneta. ";
+        resultado.temp = "Being in the habitable zone, it's possible that liquid water may exist on the planet in the form of vast oceans, similar to Earth, which could indicate the potential for life to exist on the exoplanet.";
         var habitable2 = true;
         score2 = (inputValues.value3 <= 1) ? (inputValues.value3 - 0.75) * 100 / (1 - 0.75) : (1.77 - inputValues.value3) * 100 / (1.77 - 1);
     } else if (inputValues.value3 < 0.75) {
-        resultado.temp = "Al encontrarse más allá de la zona habitable, es posible que exista agua pero congelada en el planeta, lo que imposibilita la posibilidad de existencia de vida en el exoplaneta. ";
+        resultado.temp = "Being located beyond the habitable zone, it's possible that there is water on the planet, but it would likely be frozen, making the possibility of life existing on the exoplanet highly unlikely.";
         var habitable2 = false;
         score2= 0;
     } else {
-        resultado.temp = "Al encontrarse más cerca del sol que la zona habitable, es posible que exista agua pero en forma de vapor en el planeta, temperaturas que imposibilitan la posibilidad de existencia de vida en el exoplaneta. ";
+        resultado.temp = "Being closer to the sun than the habitable zone, it's possible that water on the planet may exist in the form of vapor due to extreme temperatures, rendering the possibility of life existing on the exoplanet highly improbable.";
         var habitable2 = false;
         score2 = 0;
     }
@@ -137,14 +137,14 @@ const getImages = async() => {
     var densidad = inputValues.value2 / ((4 / 3) * 3.1416 * Math.pow(inputValues.value1, 3) * 1000);
 
     if (densidad >= 3.5) {
-        resultado.tipo = "Por otra parte, el exoplaneta es Rocoso, lo que posibilita la existencia de vida pero no la garantiza. ";
-        resultado.tipoP = "Rocoso"
+        resultado.tipo = "On the other hand, the exoplanet is rocky, which allows for the possibility of life but does not guarantee it.";
+        resultado.tipoP = "Rocky"
         console.log(resultado.tipoP)
         var habitable3 = true;
         score3 = 100;
     } else {
-        resultado.tipo = "Por otra parte, el exoplaneta es Gaseoso, por ende, es imposible que exista vida en él. ";
-        resultado.tipoP = "Gaseoso"
+        resultado.tipo = "On the other hand, the exoplanet is gaseous, and as a result, it is impossible for life to exist on it.";
+        resultado.tipoP = "Gas-rich"
         console.log(resultado.tipoP)
         var habitable3 = false;
         score3 = 100;
@@ -153,9 +153,9 @@ const getImages = async() => {
     resultado.score = (score1 + score2 + score3) / 3;
 
     if (habitable1 && habitable2 && habitable3) {
-        resultado.habitable = "En conclusión, el exoplaneta tiene muy buenos indicios de ser habitable.";
+        resultado.habitable = "In conclusion, the exoplanet shows very promising signs of being habitable.";
     } else {
-        resultado.habitable = "En conclusión, el exoplaneta es inhabitable.";
+        resultado.habitable = "In conclusion, the exoplanet is uninhabitable.";
     }
     table.style.display = 'block';
     console.log(resultado)

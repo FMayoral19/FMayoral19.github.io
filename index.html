@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ai Generator</title>
+    <title>AI Generator</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
@@ -11,31 +11,30 @@
         <header>
         <div class="title-container">
             <h2>Welcome to</h2>
-            <h1>Ai Exo-planet Generator</h1>
+            <h1>MY EXOPLANET, powered by OpenAI</h1>
             <p></p>
         </div>
     </header>
     <table>
         <tr>
-            <td><section class="image-section"><a id="downloadLink" download="exoplanet_image.png" style="display:none;">Descargar Imagen</a></section></td>
-            <td><section class="score"><h1><table><tr><th></th><th>Earth</th><th>Your Planet</th></tr><tr><td>score:</td><td><h1>100</h1></td><td><h1 id="score"></h1></td></tr><tr><td>Gravity m/s^2:</td><td><h1>9.8</h1></td><td><h1 id="gravedad"></h1></td></tr><tr><td>Habitable Zone %:
+            <td><section class="image-section"><a id="downloadLink" download="exoplanet_image.png" style="display:none;">Download Image</a></section></td>
+            <td><section class="score"><h1><table><tr><th></th><th>Earth</th><th>Your Planet</th></tr><tr><td>Score:</td><td><h1>100</h1></td><td><h1 id="score"></h1></td></tr><tr><td>Gravity m/s^2:</td><td><h1>9.8</h1></td><td><h1 id="gravedad"></h1></td></tr><tr><td>Habitable Zone %:
 
-            </td><td>100</td><td><h1 id="habitable"></h1></td></tr><tr><td>Type of Planet:</td><td>Rocoso</td><td><h1 id="tipoP"></h1></td></tr></table></h1></section></td>
+            </td><td>100</td><td><h1 id="habitable"></h1></td></tr><tr><td>Type of Planet:</td><td>Rocky</td><td><h1 id="tipoP"></h1></td></tr></table></h1></section></td>
         </tr>
     </table>
-    <section class="text-section"><p id="paragraph"></p><iframe width="320" height="440" id="insta" src="https://www.instagram.com/p/CFaOfiypwUF/embed/" frameborder="0"></iframe></section>
+    <section class="text-section"><p id="paragraph"></p></section>
     <section class="bottom-section">
-        
 <!-- Pregunta 1 -->
 <div class="input-container1">
-    <label for="rango1" id="valor1">El radio del Exoplaneta en veces el radio de la tierra:  </label>
+    <label for="rango1" id="valor1">The Exoplanet's radius in comparison to Earth's radius is:  </label>
     <output for="rango1" id="output1">5</output>
     <input type="range" id="rango1" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output1', 'rango1')">
 </div>
 
 <!-- Pregunta 2 -->
 <div class="input-container2">
-    <label for="rango2" id="valor2">La masa del exoplaneta en masas terrestres es de: </label>
+    <label for="rango2" id="valor2">The Exoplanet's mass in comparison to Earth's mass is: </label>
     <output for="rango2" id="output2">5</output>
     <input type="range" id="rango2" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output2', 'rango2')">
 </div>
@@ -49,14 +48,14 @@
 
 <!-- Pregunta 4 -->
 <div class="input-container4">
-    <label for="rango4" id="valor4">Valor:</label>
+    <label for="rango4" id="valor4">Value:</label>
     <output for="rango4" id="output4">5</output>
     <input type="range" id="rango4" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output4', 'rango4')">
 </div>
 
     </section>
-    <button class="buttonPrim" id="changeTextButton">continuar</button>
-    <div id="loader">Cargando...</div>
+    <button class="buttonPrim" id="changeTextButton">Continue</button>
+    <div id="loader">Loading...</div>
     <script src="app.js"></script>    
 </body>
 </html>

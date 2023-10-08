@@ -209,7 +209,3 @@ input[type="range"]::-ms-thumb {
 .score td:nth-child(2) {
   background-color: #f9f9f9;
 }
-
-#insta{
-    display: none;
-}
