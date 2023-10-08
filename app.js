@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "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";
 const inputElement = document.querySelector("input");
 const imageSection = document.querySelector('.image-section');
 const loader = document.querySelector('#loader');
