@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai Generator</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="visual" viewBox="0 0 960 540"  version="1.1"><rect x="0" y="0" width="960" height="540" fill="#001220"/><path d="M0 314L22.8 322C45.7 330 91.3 346 137 346.2C182.7 346.3 228.3 330.7 274 329C319.7 327.3 365.3 339.7 411.2 352.2C457 364.7 503 377.3 548.8 383.3C594.7 389.3 640.3 388.7 686 389.8C731.7 391 777.3 394 823 382.3C868.7 370.7 914.3 344.3 937.2 331.2L960 318L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#fa7268"/><path d="M0 360L22.8 363.7C45.7 367.3 91.3 374.7 137 374.2C182.7 373.7 228.3 365.3 274 372.3C319.7 379.3 365.3 401.7 411.2 407.8C457 414 503 404 548.8 395C594.7 386 640.3 378 686 374C731.7 370 777.3 370 823 375.2C868.7 380.3 914.3 390.7 937.2 395.8L960 401L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#ef5f67"/><path d="M0 427L22.8 427.5C45.7 428 91.3 429 137 430C182.7 431 228.3 432 274 430.3C319.7 428.7 365.3 424.3 411.2 422.7C457 421 503 422 548.8 424.5C594.7 427 640.3 431 686 432.8C731.7 434.7 777.3 434.3 823 428.5C868.7 422.7 914.3 411.3 937.2 405.7L960 400L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#e34c67"/><path d="M0 476L22.8 472.8C45.7 469.7 91.3 463.3 137 456.7C182.7 450 228.3 443 274 444C319.7 445 365.3 454 411.2 457.8C457 461.7 503 460.3 548.8 458.7C594.7 457 640.3 455 686 453.5C731.7 452 777.3 451 823 453.3C868.7 455.7 914.3 461.3 937.2 464.2L960 467L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#d53867"/><path d="M0 496L22.8 499.3C45.7 502.7 91.3 509.3 137 510C182.7 510.7 228.3 505.3 274 502.5C319.7 499.7 365.3 499.3 411.2 501.3C457 503.3 503 507.7 548.8 509.7C594.7 511.7 640.3 511.3 686 505.7C731.7 500 777.3 489 823 487.3C868.7 485.7 914.3 493.3 937.2 497.2L960 501L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#c62368"/></svg>
+        <header>
+        <div class="title-container">
+            <h2>Welcome to</h2>
+            <h1>Ai Exo-planet Generator</h1>
+            <p></p>
+        </div>
+    </header>
+    <table>
+        <tr>
+            <td><section class="image-section"><a id="downloadLink" download="exoplanet_image.png" style="display:none;">Descargar Imagen</a></section></td>
+            <td><section class="score"><h1><table><tr><th></th><th>Earth</th><th>Your Planet</th></tr><tr><td>score:</td><td><h1>100</h1></td><td><h1 id="score"></h1></td></tr><tr><td>Gravity m/s^2:</td><td><h1>9.8</h1></td><td><h1 id="gravedad"></h1></td></tr><tr><td>Habitable Zone %:
+
+            </td><td>100</td><td><h1 id="habitable"></h1></td></tr><tr><td>Type of Planet:</td><td>Rocoso</td><td><h1 id="tipoP"></h1></td></tr></table></h1></section></td>
+        </tr>
+    </table>
+    <section class="text-section"><p id="paragraph"></p><iframe width="320" height="440" id="insta" src="https://www.instagram.com/p/CFaOfiypwUF/embed/" frameborder="0"></iframe></section>
+    <section class="bottom-section">
+        
+<!-- Pregunta 1 -->
+<div class="input-container1">
+    <label for="rango1" id="valor1">El radio del Exoplaneta en veces el radio de la tierra:  </label>
+    <output for="rango1" id="output1">5</output>
+    <input type="range" id="rango1" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output1', 'rango1')">
+</div>
+
+<!-- Pregunta 2 -->
+<div class="input-container2">
+    <label for="rango2" id="valor2">La masa del exoplaneta en masas terrestres es de: </label>
+    <output for="rango2" id="output2">5</output>
+    <input type="range" id="rango2" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output2', 'rango2')">
+</div>
+
+<!-- Pregunta 3 -->
+<div class="input-container">
+    <label for="rango3" id="valor3">Distance in astronomical units</label>
+    <output for="rango3" id="output3">5</output>
+    <input type="range" id="rango3" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output3', 'rango3')">
+</div>
+
+<!-- Pregunta 4 -->
+<div class="input-container4">
+    <label for="rango4" id="valor4">Valor:</label>
+    <output for="rango4" id="output4">5</output>
+    <input type="range" id="rango4" min="0" max="10" step="0.1" value="5" color="#c62368" oninput="mostrarValor('output4', 'rango4')">
+</div>
+
+    </section>
+    <button class="buttonPrim" id="changeTextButton">continuar</button>
+    <div id="loader">Cargando...</div>
+    <script src="app.js"></script>    
+</body>
+</html>
