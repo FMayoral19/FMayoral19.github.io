@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "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";
 const inputElement = document.querySelector("input");
 const imageSection = document.querySelector('.image-section');
 const loader = document.querySelector('#loader');
@@ -247,6 +247,7 @@ function mostrarValor(outputId, rangeId) {
     const response = await fetch(`https://api.openai.com/v1/completions`, {
       method: "POST",
       headers: {
+        organization: "EXPOLANET",
         "Content-Type": "application/json",
         Authorization: `Bearer ${API_KEY}`,
       },
