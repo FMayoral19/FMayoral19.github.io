@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Francisco Mayoral — Mechatronics Engineer. Mechanical design, manufacturing, robotics and data projects.">
+<title>Francisco Mayoral Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: Katie-style — black full-bleed hero with a horizon glow, then airy white sections with big bold headings left and media right. */
+:root{
+  --bg:#ffffff; --bg-alt:#f5f6f8; --fg:#0b0b0d; --muted:#4a4f57; --line:#e3e5e9; --accent:#3b4cca; --accent-soft:#eceefb;
+  --hero:#000000; --hero-fg:#ffffff; --glow:#5b5fc7;
+  --f-display:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1180px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e11;--bg-alt:#14161a;--fg:#f1f2f4;--muted:#a3a9b3;--line:#262a31;--accent:#8f9bff;--accent-soft:#1c2033;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0e11;--bg-alt:#14161a;--fg:#f1f2f4;--muted:#a3a9b3;--line:#262a31;--accent:#8f9bff;--accent-soft:#1c2033;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.75 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--hero)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.025em}
+h2{font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:800}
+h3{font-size:1.3rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+.label{font:600 .74rem/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* header over hero */
+header.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:30;color:var(--hero-fg);transition:background .25s}
+header.top.solid{background:rgba(0,0,0,.88);backdrop-filter:blur(8px)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px}
+.brand{color:var(--hero-fg);text-decoration:none;font:600 1.05rem/1.2 var(--f-display);letter-spacing:-.01em;min-width:0}
+.burger{background:none;border:0;padding:8px;cursor:pointer;color:var(--hero-fg);display:grid;gap:6px;flex-shrink:0}
+.burger span{display:block;width:28px;height:2px;background:currentColor}
+.menu{position:fixed;inset:0;z-index:50;background:var(--hero);color:var(--hero-fg);display:flex;flex-direction:column;
+  padding-block:calc(env(safe-area-inset-top,0px) + 16px) calc(env(safe-area-inset-bottom,0px) + 32px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.menu .row{max-width:var(--wrap);width:100%;margin:0 auto;display:flex;justify-content:space-between;align-items:center;min-height:40px}
+.menu .close{background:none;border:0;color:var(--hero-fg);font:300 2rem/1 var(--f-body);cursor:pointer;padding:4px 8px}
+.menu ul{list-style:none;margin:auto;padding:0;max-width:var(--wrap);width:100%;display:grid;gap:6px}
+.menu ul a{color:var(--hero-fg);text-decoration:none;font:800 clamp(2.2rem,7vw,4rem)/1.15 var(--f-display);letter-spacing:-.03em;opacity:.85}
+.menu ul a:hover{opacity:1;color:#b9bdff}
+.menu .soc{max-width:var(--wrap);width:100%;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap}
+.menu .soc a{color:#c9ccd4;font-size:.95rem}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-fg);
+  background-image:radial-gradient(120% 60% at 50% 120%,var(--glow) 0%,rgba(40,40,110,.55) 30%,rgba(0,0,0,0) 62%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,rgba(160,165,255,.6),transparent)}
+.hero .wrap{position:relative;z-index:1;padding-block:150px 130px}
+.hero h1{font-size:clamp(3rem,8.4vw,5.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.02}
+.hero .lede{margin-top:30px;font-size:clamp(1.1rem,1.9vw,1.42rem);line-height:1.6;max-width:36ch;color:#eceef2}
+.hero .cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;padding:13px 22px;border-radius:999px;font:600 .95rem/1 var(--f-body);text-decoration:none;border:1.5px solid var(--hero-fg);color:var(--hero-fg)}
+.btn:hover{background:var(--hero-fg);color:var(--hero)}
+.btn.ghost{border-color:rgba(255,255,255,.35)}
+.drone{position:absolute;z-index:0;top:18%;right:12%;width:clamp(110px,15vw,190px);color:#d9dbe3;opacity:.9;animation:bob 6s ease-in-out infinite}
+.drone .prop{transform-box:fill-box;transform-origin:center;animation:spin .35s linear infinite}
+@keyframes bob{50%{transform:translateY(-14px) rotate(-2deg)}}
+@keyframes spin{to{transform:scaleX(.25)}}
+@media (max-width:700px){.drone{top:auto;bottom:24px;right:16px;opacity:.6}.hero .wrap{padding-block:120px 110px}}
+
+/* sections */
+section.band{padding-block:110px}
+section.band.alt{background:var(--bg-alt)}
+.sec-head{margin-bottom:48px;max-width:760px}
+.sec-head>.label{display:none}
+.sec-head p{margin-top:18px;color:var(--muted)}
+@media (max-width:760px){section.band{padding-block:72px}}
+
+.about{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px;align-items:start}
+.about .copy{display:grid;gap:22px;max-width:60ch}
+.about h2{margin-bottom:12px}
+.about figure{margin:56px 0 0}
+.about figure img{display:block;width:100%;aspect-ratio:4/5;max-width:100%;object-fit:cover}
+.about figcaption{margin-top:12px;font-size:.88rem;color:var(--muted);line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:22px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font:800 2rem/1 var(--f-display);letter-spacing:-.03em}
+.stats span{display:block;margin-top:8px;font-size:.84rem;line-height:1.4;color:var(--muted)}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:40px}.about figure{margin:0}.about figure img{aspect-ratio:4/3}}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* what I do */
+.areas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:52px 56px}
+.area{display:flex;flex-direction:column;gap:12px;min-width:0}
+.area p{color:var(--muted);font-size:1rem}
+.area .tools{font-size:.84rem;color:var(--accent);font-weight:500}
+@media (max-width:900px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.areas{grid-template-columns:1fr;gap:36px}}
+
+/* experience */
+.job{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;padding-block:44px;border-top:1px solid var(--line)}
+.job .when{display:grid;gap:6px;align-content:start}
+.job .when .co{font:800 1.6rem/1.1 var(--f-display);letter-spacing:-.03em}
+.job .role{font-weight:700;font-size:1.1rem;margin-bottom:8px}
+.job .ctx{color:var(--muted);max-width:66ch;margin-bottom:26px}
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.case{background:var(--bg);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;min-width:0}
+.alt .case{background:var(--bg)}
+.case .body{padding:22px 22px 18px;display:grid;gap:8px}
+.case .body h3{font-size:1.08rem}
+.case .body p{font-size:.94rem;color:var(--muted);line-height:1.65}
+.case .foot{margin-top:auto;display:flex;justify-content:space-between;gap:10px;padding:12px 22px;border-top:1px solid var(--line);font-size:.82rem}
+.case .foot span{color:var(--muted)}
+.case .foot .res{color:var(--accent);font-weight:700;text-align:right}
+@media (max-width:760px){.job{grid-template-columns:1fr;gap:12px}.cases{grid-template-columns:1fr}}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{font:500 .88rem/1 var(--f-body);padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;cursor:pointer;color:inherit;font:inherit;transition:transform .2s,box-shadow .2s;min-width:0}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
+.card .ph{aspect-ratio:4/3;max-width:100%;background:var(--bg-alt);overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card .ph.spec{display:grid;place-items:center;padding:24px;background:#0a0b10}
+.card .ph.spec svg{width:100%;height:100%;max-height:170px}
+.card .body{padding:20px 22px 16px;display:grid;gap:8px}
+.card .body h3{font-size:1.12rem}
+.card .body p{font-size:.94rem;color:var(--muted);line-height:1.6}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.card .tags span{font-size:.74rem;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.card .open{margin-top:auto;padding:12px 22px 18px;font-size:.86rem;font-weight:600;color:var(--accent)}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+/* dialog */
+dialog{border:0;border-radius:16px;padding:0;max-width:min(900px,calc(100vw - 24px));width:100%;max-height:calc(100vh - 32px);background:var(--bg);color:var(--fg)}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.dlg-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:22px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:1}
+.dlg-head h3{font-size:1.6rem;font-weight:800;margin-top:6px}
+.x{border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);width:40px;height:40px;cursor:pointer;font-size:1rem;flex-shrink:0}
+.dlg-body{padding:24px;display:grid;gap:24px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gallery figure{margin:0;border-radius:10px;overflow:hidden;background:var(--bg-alt)}
+.gallery img{display:block;width:100%;height:220px;object-fit:contain}
+.gallery figcaption{font-size:.8rem;color:var(--muted);padding:8px 12px;line-height:1.4}
+.oh{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.oh>div{min-width:0}
+.oh ul{margin:10px 0 0;padding-left:18px;display:grid;gap:8px;font-size:.95rem;line-height:1.6}
+@media (max-width:700px){.oh{grid-template-columns:1fr}}
+
+
+.partners{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:-20px 0 30px}
+.partners .label{margin-right:4px}
+.partners span:not(.label){font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.chip .num{opacity:.6;margin-left:4px}
+#cats{display:grid;gap:64px}
+.cat-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.cat-head h3{font-size:clamp(1.35rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.02em}
+.cat-head .count{font-size:.9rem;font-weight:600;color:var(--muted);margin-left:6px;letter-spacing:0}
+.cat-head p{color:var(--muted);font-size:.95rem;max-width:56ch}
+.card .partner{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.kpi{font-weight:800;font-size:1rem;letter-spacing:-.01em;color:var(--fg);padding:8px 0 2px;border-top:1px solid var(--line);margin-top:4px}
+.kpi.big{font-size:1.25rem;border:0;padding:4px 0 0}
+.dlg-sum{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1.2fr);gap:20px;padding:18px;border-radius:12px;background:var(--bg-alt)}
+.dlg-sum p{font-size:.95rem;line-height:1.55;margin-top:6px}
+.dlg-sum .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dlg-sum .tags span{font-size:.74rem;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+@media (max-width:700px){.dlg-sum{grid-template-columns:1fr}}
+
+@media (min-width:1000px){.grid.n4{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.grid.n4 .card .body{padding:18px 18px 14px}}
+@media (min-width:700px){.grid.n2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* experience extras */
+.toolrow{display:flex;flex-wrap:wrap;gap:6px;margin:-10px 0 22px}
+.toolrow span{font-size:.76rem;font-weight:500;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.case .viz{padding:16px 18px 6px;border-bottom:1px solid var(--line);background:var(--bg-alt);border-radius:14px 14px 0 0}
+.viz svg{display:block;width:100%;height:auto;max-height:130px}
+.viz .t{fill:var(--muted);font:500 11px var(--f-body)}
+.viz .ta{fill:var(--accent);font:800 13px var(--f-body)}
+.viz .tn{fill:var(--muted);font:400 9.5px var(--f-body);opacity:.8}
+.viz .big{fill:var(--fg);font:800 26px var(--f-display);letter-spacing:-.02em}
+.viz .s{stroke:var(--muted);fill:none;stroke-width:1.6}
+.viz .a{stroke:var(--accent)}
+.viz .fa{fill:var(--accent)}
+.viz .fm{fill:var(--line)}
+.pwr{margin:4px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.92rem;line-height:1.55}
+.pwr dt{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.pwr dd{margin:0;color:var(--fg)}
+.pwr dd:last-of-type{font-weight:700}
+/* featured */
+.feature{display:grid;gap:26px;padding-block:52px;border-top:1px solid var(--line)}
+.feature:first-of-type{border-top:0;padding-top:8px}
+.f-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:start}
+.f-text{display:grid;gap:18px}
+.f-text h3{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:800;letter-spacing:-.03em}
+.f-text>p{color:var(--muted);max-width:60ch}
+.f-eyebrow{display:flex;flex-wrap:wrap;gap:6px}
+.f-eyebrow span{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.f-eyebrow span:first-child{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.f-role{border-left:3px solid var(--accent);padding:4px 0 4px 16px}
+.f-role p{margin-top:6px;font-weight:500}
+.f-hero{margin:0}
+.f-hero img{display:block;width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px}
+.f-hero figcaption{margin-top:10px;font-size:.86rem;color:var(--muted)}
+.f-sub{margin-bottom:-12px}
+.subs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.sub{border:1px solid var(--line);border-radius:12px;padding:16px 16px 18px;background:var(--bg);display:grid;gap:6px;align-content:start;min-width:0}
+.sub.mine{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.sub .who{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.sub.mine .who{color:var(--accent)}
+.sub h4{margin:0;font:700 1.02rem/1.25 var(--f-display);letter-spacing:-.01em}
+.sub p{font-size:.9rem;line-height:1.55;color:var(--muted)}
+.f-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.f-stats>div{padding:16px 18px;border-radius:12px;background:var(--bg)}
+.f-stats b{display:block;font:800 1.5rem/1.1 var(--f-display);letter-spacing:-.02em}
+.f-stats span{display:block;margin-top:6px;font-size:.86rem;color:var(--muted);line-height:1.45}
+.f-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.f-gal figure{margin:0;cursor:zoom-in;border-radius:10px;overflow:hidden;background:var(--bg)}
+.f-gal img{display:block;width:100%;aspect-ratio:1;object-fit:cover;transition:transform .2s}
+.f-gal figure:hover img{transform:scale(1.04)}
+.f-gal figcaption{font-size:.76rem;line-height:1.35;color:var(--muted);padding:7px 9px 9px}
+.lb img{display:block;width:100%;max-height:72vh;object-fit:contain;background:var(--bg-alt);border-radius:10px}
+@media (max-width:860px){.f-top{grid-template-columns:1fr;gap:24px}.f-stats{grid-template-columns:1fr}}
+/* resume */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+.edu{display:grid}
+.edu>div{padding:20px 0;border-top:1px solid var(--line);display:grid;gap:4px}
+.edu .t{font:700 1.15rem/1.3 var(--f-display);letter-spacing:-.01em}
+.edu .m{color:var(--muted);font-size:.95rem;line-height:1.6}
+.skills dl{margin:0}
+.skills .row{display:grid;grid-template-columns:160px minmax(0,1fr);gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+.skills dt{font-weight:700;font-size:.92rem}
+.skills dd{margin:0;font-size:.95rem;color:var(--muted);line-height:1.6}
+@media (max-width:820px){.two{grid-template-columns:1fr;gap:24px}.skills .row{grid-template-columns:1fr;gap:4px}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start}
+.contact .lede{color:var(--muted);margin-top:18px;max-width:50ch}
+.clist{display:grid;gap:12px}
+.clist>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:var(--bg);flex-wrap:wrap}
+.clist .val{font-weight:600;font-size:1rem;user-select:all;word-break:break-all;margin-top:2px}
+.copy{font:600 .84rem/1 var(--f-body);padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--accent);cursor:pointer;text-decoration:none}
+@media (max-width:820px){.contact{grid-template-columns:1fr;gap:32px}}
+
+footer{background:var(--hero);color:#b8bcc6;padding-block:40px;font-size:.9rem}
+footer .wrap{display:grid;gap:14px;justify-items:center;text-align:center}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 0}
+footer nav a{color:#eef0f4;text-decoration:none;padding:0 12px;border-left:1px solid #3a3e47}
+footer nav a:first-child{border-left:0}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#home">Francisco Mayoral — Mechatronics Engineer</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="menu" id="menu" hidden>
+  <div class="row"><span class="brand">Francisco Mayoral — Mechatronics Engineer</span><button class="close" id="menu-x" aria-label="Close menu">✕</button></div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#featured">Featured</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="soc"><a href="https://linkedin.com/in/f-mayoral" target="_blank" rel="noopener">LinkedIn</a><span style="color:#c9ccd4">fcoalanmayoral@hotmail.com</span></div>
+</div>
+
+<main id="home">
+<section class="hero">
+  <svg class="drone" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <line x1="30" y1="52" x2="170" y2="52"/><line x1="60" y1="40" x2="140" y2="64"/><line x1="60" y1="64" x2="140" y2="40"/>
+    <rect x="82" y="44" width="36" height="16" rx="3" fill="#000"/>
+    <ellipse class="prop" cx="30" cy="44" rx="24" ry="3"/><ellipse class="prop" cx="170" cy="44" rx="24" ry="3"/>
+    <line x1="30" y1="44" x2="30" y2="52"/><line x1="170" y1="44" x2="170" y2="52"/>
+    <path d="M90 60 l-8 14 M110 60 l8 14 M76 74 h16 M108 74 h16"/>
+    <rect x="94" y="62" width="12" height="7" rx="1"/>
+  </svg>
+  <div class="wrap">
+    <h1>Hi, I'm<br>Francisco Mayoral</h1>
+    <p class="lede">Mechatronics Engineer combining mechanical design, manufacturing and electronics to build products that work on the shop floor.</p>
+    <div class="cta"><a class="btn" href="#contact">Get in Touch</a><a class="btn ghost" href="#projects">See my work</a></div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap about">
+    <div class="copy">
+      <h2>An Engineer Who Builds What He Designs.</h2>
+      <p>I design mechanical parts and the fixtures that make them work: plastic, sheet-metal and mechanism components at John Deere, and sensor supports and calibration fixtures for industrial dispensing equipment at Bosch in Stuttgart.</p>
+      <p>I'm finishing my B.S. in Mechatronics Engineering at Tecnológico de Monterrey (GPA 95/100) after an exchange at the Karlsruhe Institute of Technology on a DAAD scholarship. That mix means I'm comfortable when a part has to carry a sensor, a harness or a microcontroller.</p>
+      <p>Right now I'm building my capstone, an autonomous drone that lands on an oscillating platform, and looking for mechanical design and product development roles from January 2027.</p>
+      <div class="stats">
+        <div><b class="num">−35%</b><span>creep deformation on a redesigned chute</span></div>
+        <div><b class="num">−70%</b><span>weight, machined cam to molded plastic</span></div>
+        <div><b class="num">0.02&nbsp;mm</b><span>accuracy on a calibration fixture</span></div>
+        <div><b class="num">3</b><span>languages: Spanish, English, German B2</span></div>
+      </div>
+    </div>
+    <figure>
+      <img src="images/eco_insp.jpg" alt="Shell Eco-Marathon electric vehicle at technical inspection in Indianapolis">
+      <figcaption>Our Shell Eco-Marathon car at technical inspection in Indianapolis, 2024. We were the only Tec de Monterrey team to pass.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band alt" id="work">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">What I do</div><div><h2>What I Do</h2></div></div>
+    <div class="areas">
+      <div class="area"><h3>Mechanical design</h3><p>Parts, assemblies and mechanisms from concept to released drawing, including a console adjustment mechanism and a redesigned grass discharge chute.</p><div class="tools">Creo · Inventor · SolidWorks · GD&amp;T · BOMs</div></div>
+      <div class="area"><h3>Design for manufacturing</h3><p>Choosing the process that makes the part cheaper and lighter: machined to injection-molded, stamped parts with less material, 3D-printed prototypes for fast iterations.</p><div class="tools">Injection molding · Sheet metal · DFM/DFA</div></div>
+      <div class="area"><h3>CAE &amp; simulation</h3><p>Generative design and structural checks to decide where material goes before anything is cut, working alongside FEA specialists.</p><div class="tools">Altair Inspire · SimSolid · Ansys</div></div>
+      <div class="area"><h3>Automation</h3><p>Fixtures and sensor supports for dispensing equipment at Bosch, a cobot inspection cell for Schneider Electric and a robotic assembly station with MIT.</p><div class="tools">Inventor · Cobots · Machine vision · Digital twin</div></div>
+      <div class="area"><h3>Robotics &amp; controls</h3><p>PID control on an STM32 vehicle, multi-robot routing in ROS and an autonomous drone with camera-based landing.</p><div class="tools">C/C++ · ROS · STM32 · Raspberry Pi · Pixhawk</div></div>
+      <div class="area"><h3>Data &amp; statistics</h3><p>Python models that predict quality and cost, and designed experiments analyzed with ANOVA to find the factors that matter.</p><div class="tools">Python · scikit-learn · DOE · Regression</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Experience</div><div><h2>Industry Experience</h2><p>Two internships designing real parts and equipment. Company drawings and photos stay confidential, so each project is shown with its problem, my work, the measured result and a schematic I drew to explain the idea.</p></div></div>
+
+    <article class="job">
+      <div class="when"><div class="co">John Deere</div><div class="label num">Jul 2024 – Jun 2025</div><div class="label">Monterrey, Mexico</div></div>
+      <div>
+        <div class="role">Mechanical Design Intern · Turf Division</div>
+        <p class="ctx">A one-year internship in product engineering for lawn and turf equipment. I designed and optimized plastic, sheet-metal and mechanism components in Creo Parametric, released drawings with GD&amp;T and BOMs in Windchill, and worked in design reviews with the Simulation, Manufacturing and Testing teams.</p>
+        <div class="toolrow"><span>Creo Parametric</span><span>Windchill</span><span>Altair Inspire</span><span>SimSolid</span><span>GD&amp;T</span><span>DFM</span><span>3D-printed prototypes</span></div>
+        <div class="cases">
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Creep deformation: original 100%, ribbed design 65%"><text x="0" y="14" class="t">Creep deformation</text><text x="0" y="44" class="t">Original</text><rect x="70" y="32" width="210" height="16" rx="3" class="fm"/><text x="0" y="78" class="t">With ribs</text><rect x="70" y="66" width="136.5" height="16" rx="3" class="fa"/><text x="212" y="79" class="ta">−35%</text><text x="0" y="104" class="tn">Relative values · schematic</text></svg></div>
+            <div class="body"><h3>Grass discharge chute</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>The plastic chute deformed by about 20 mm under long-term load (creep).</dd><dt>My work</dt><dd>Iterated rib layouts, curvature and material, checked each option in SimSolid and confirmed it still fit the assembly.</dd><dt>Result</dt><dd>About 35% less creep deformation, inside the safe zone.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Part weight: machined metal 100%, molded plastic 30%"><text x="0" y="14" class="t">Part weight</text><text x="0" y="44" class="t">Machined</text><rect x="70" y="32" width="210" height="16" rx="3" class="fm"/><text x="0" y="78" class="t">Molded</text><rect x="70" y="66" width="63" height="16" rx="3" class="fa"/><text x="140" y="79" class="ta">−70%</text><text x="0" y="104" class="tn">Relative values · schematic</text></svg></div>
+            <div class="body"><h3>Cam: machined metal to molded plastic</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>A machined metal cam was heavy and expensive. Targets: −25% cost and −35% weight.</dd><dt>My work</dt><dd>Ran generative design in Altair Inspire, then turned the result into a geometry that can be injection molded.</dd><dt>Result</dt><dd>About 70% lighter, well past the weight target.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Material use: original 100%, optimized up to 30% less"><text x="0" y="14" class="t">Material per part</text><text x="0" y="44" class="t">Original</text><rect x="70" y="32" width="210" height="16" rx="3" class="fm"/><text x="0" y="78" class="t">Optimized</text><rect x="70" y="66" width="147" height="16" rx="3" class="fa"/><text x="223" y="79" class="ta">up to −30%</text><text x="0" y="104" class="tn">Relative values · schematic</text></svg></div>
+            <div class="body"><h3>Stamped structural component</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>A high-volume stamped part used more steel than it needed.</dd><dt>My work</dt><dd>Found the stress concentrations, proposed material and geometry changes and closed the design with the FEA team.</dd><dt>Result</dt><dd>Up to 30% less material per part.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Schematic of an adjustment mechanism with a slot and pivot"><rect x="40" y="40" width="150" height="26" rx="13" class="s"/><circle cx="72" cy="53" r="7" class="fa"/><line x1="72" y1="53" x2="150" y2="96" class="s a" stroke-width="3"/><circle cx="150" cy="96" r="5" class="s"/><path d="M95 30 h60 m-8 -5 l8 5 -8 5" class="s a"/><text x="205" y="50" class="t">Adjustment</text><text x="205" y="64" class="t">slot + pivot</text><text x="0" y="104" class="tn">Schematic, not the actual part</text></svg></div>
+            <div class="body"><h3>Console adjustment mechanism</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>An operator console needed an adjustment mechanism that works and is easy to build.</dd><dt>My work</dt><dd>Designed and optimized the mechanism in Creo, made GD&amp;T drawings for the proposals and 3D-printed prototypes to test faster.</dd><dt>Result</dt><dd>Mechanism proposals with GD&amp;T drawings and printed prototypes.</dd></dl></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when"><div class="co">Bosch</div><div class="label num">Apr 2026 – Sep 2026</div><div class="label">Stuttgart, Germany</div></div>
+      <div>
+        <div class="role">Technology Development Intern · Bosch Manufacturing Solutions</div>
+        <p class="ctx">Bosch Manufacturing Solutions develops production equipment for Bosch plants. I worked in the Joining &amp; Dispensing area (EMP13) at Werk Feuerbach, in German, designing supports, fixtures and test equipment for adhesive-dispensing systems in Autodesk Inventor, with drawings and tolerances managed in Teamcenter.</p>
+        <div class="toolrow"><span>Autodesk Inventor</span><span>Teamcenter</span><span>Tolerancing</span><span>Interference checks</span><span>3D printing</span><span>Process Simulate</span><span>German</span></div>
+        <div class="cases">
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Schematic: sensor moved back onto the laser's optical axis in three axes"><rect x="6" y="40" width="34" height="26" rx="3" class="s"/><text x="8" y="80" class="t">Laser</text><line x1="40" y1="53" x2="290" y2="53" class="s a" stroke-dasharray="5 4"/><text x="214" y="40" class="ta">optical axis</text><rect x="120" y="66" width="34" height="22" rx="3" class="s" stroke-dasharray="3 3"/><rect x="170" y="42" width="34" height="22" rx="3" class="fa"/><path d="M154 80 Q170 80 178 66" class="s a"/><text x="96" y="100" class="t">old position</text><text x="214" y="80" class="t">X · Y · Z</text><text x="214" y="104" class="tn">Schematic</text></svg></div>
+            <div class="body"><h3>Laser-sensor support redesign</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>A new sensor had different dimensions and no longer sat on the laser's optical axis.</dd><dt>My work</dt><dd>Redesigned the support to move the sensor in three axes, checked interferences with the assembly, defined tolerances and released new drawings.</dd><dt>Result</dt><dd>Sensor back on axis; assembly and drawings updated.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Positioning accuracy of 0.02 millimetres"><circle cx="60" cy="52" r="34" class="s"/><circle cx="60" cy="52" r="20" class="s"/><circle cx="60" cy="52" r="5" class="fa"/><line x1="16" y1="52" x2="104" y2="52" class="s"/><line x1="60" y1="8" x2="60" y2="96" class="s"/><text x="130" y="50" class="big">0.02 mm</text><text x="130" y="70" class="t">positioning accuracy</text><text x="130" y="104" class="tn">Schematic</text></svg></div>
+            <div class="body"><h3>Sensor calibration fixture</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>Process setup needed the sensor placed in the same position every time.</dd><dt>My work</dt><dd>Designed a fixture that locates the sensor repeatably during setup.</dd><dt>Result</dt><dd>0.02 mm positioning accuracy.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Iteration loop: design, print, test"><g class="t"><text x="22" y="58">Design</text><text x="128" y="58">Print</text><text x="226" y="58">Test</text></g><rect x="8" y="38" width="76" height="30" rx="15" class="s"/><rect x="112" y="38" width="76" height="30" rx="15" class="s"/><rect x="214" y="38" width="76" height="30" rx="15" class="fa" opacity=".18"/><rect x="214" y="38" width="76" height="30" rx="15" class="s a"/><path d="M84 53 h24 m-6 -4 l6 4 -6 4 M188 53 h22 m-6 -4 l6 4 -6 4" class="s"/><path d="M252 70 Q252 92 150 92 Q46 92 46 72 m-4 6 l4 -6 4 6" class="s a"/><text x="118" y="106" class="tn">several iterations</text></svg></div>
+            <div class="body"><h3>Dust extraction for a dispenser head</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>Dust near the dispenser head needed to be captured at the source.</dd><dt>My work</dt><dd>Designed the extraction geometry and tested it with 3D-printed prototypes over several build-and-test cycles.</dd><dt>Result</dt><dd>A prototype refined through testing.</dd></dl></div>
+          </div>
+          <div class="case">
+            <div class="viz"><svg viewBox="0 0 300 110" role="img" aria-label="Schematic of a lab shelf and a mechanical stop"><rect x="20" y="10" width="110" height="86" class="s"/><line x1="20" y1="38" x2="130" y2="38" class="s"/><line x1="20" y1="66" x2="130" y2="66" class="s"/><rect x="34" y="18" width="34" height="20" class="fa" opacity=".8"/><rect x="80" y="46" width="34" height="20" class="fa" opacity=".8"/><rect x="170" y="56" width="70" height="14" class="s"/><rect x="240" y="40" width="12" height="46" class="fa"/><path d="M190 48 h36 m-6 -4 l6 4 -6 4" class="s a"/><text x="168" y="100" class="t">mechanical stop</text></svg></div>
+            <div class="body"><h3>Stops, supports and lab equipment</h3>
+              <dl class="pwr"><dt>Problem</dt><dd>The lab needed custom parts that standard catalogs did not cover.</dd><dt>My work</dt><dd>Designed mechanical stops including an emergency-stop solution, supports for laser equipment, a shelf for the 3D printers and simplified assemblies for Process Simulate.</dd><dt>Result</dt><dd>Parts built in-house by CNC and 3D printing.</dd></dl></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="band alt" id="featured">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Featured</div><div><h2>Featured Projects</h2><p>Three team projects explained as complete systems: what the whole team built, how the parts fit together, and which part was mine.</p></div></div>
+
+    <!-- ===================== EcoShell ===================== -->
+    <article class="feature" id="f-eco">
+      <div class="f-top">
+        <div class="f-text">
+          <div class="f-eyebrow"><span>Shell Eco-marathon</span><span>Indianapolis · 2024</span><span>11-person electronics team</span></div>
+          <h3>EcoShell: a high-efficiency electric car</h3>
+          <p>Shell Eco-marathon is a student competition where teams design, build and drive their own vehicles to cover the most distance with the least energy. Before racing, every car has to pass a strict technical inspection of safety, electrical systems and structure. EcoShell is Tecnológico de Monterrey's team: a single-seat electric prototype with a composite body, an aluminum chassis and electronics designed by the students.</p>
+          <div class="f-role"><div class="label">My role</div><p>Electronics Co-Leader. I co-led the 11 students who designed, built and integrated the electrical system: motor control, power and safety, and telemetry.</p></div>
+        </div>
+        <figure class="f-hero"><img src="images/eco_roller.jpg" alt="EcoShell car on the test rollers at the competition"><figcaption>On the test rollers at the competition, with the electronics bay open.</figcaption></figure>
+      </div>
+      <div class="label f-sub">How the car fits together</div>
+      <div class="subs">
+        <div class="sub mine"><div class="who">Electronics team · my area</div><h4>Propulsion</h4><p>Hub motor in the rear wheel, driven by a custom three-phase controller designed in Altium: six power MOSFETs, bulk capacitors, a fuse and an STM32 that generates the switching sequence.</p></div>
+        <div class="sub mine"><div class="who">Electronics team · my area</div><h4>Telemetry</h4><p>The Track Performance Unit board collects GPS position, battery-management data, wheel speed and three temperatures, and sends them for real-time decisions on power use.</p></div>
+        <div class="sub mine"><div class="who">Electronics team · my area</div><h4>Power and safety</h4><p>Battery with management system, relay, fuses and an emergency stop, plus the official joulemeter that measures the energy used in each run.</p></div>
+        <div class="sub"><div class="who">Mechanical team</div><h4>Chassis and steering</h4><p>Welded aluminum tube chassis with disc brakes and a steering column on bearings. The next iteration added Ackermann geometry and spindle plates plasma-cut from 3 mm steel.</p></div>
+        <div class="sub"><div class="who">Structure &amp; aero team</div><h4>Body</h4><p>Aerodynamic composite shell. The following redesign shortened the car from 3 m toward 2.7 m, compared two tail shapes in drag simulations and was designed so the driver can exit unaided within 10 s.</p></div>
+      </div>
+      <div class="f-stats">
+        <div><b>Passed</b><span>technical inspection in Indianapolis, the only Tec de Monterrey team to do so</span></div>
+        <div><b>2 custom PCBs</b><span>motor controller and telemetry, designed in Altium</span></div>
+        <div><b>11</b><span>students in the electronics area</span></div>
+      </div>
+      <div class="f-gal">
+        <figure><img src="images/eco_pcb.jpg" alt="Assembled motor controller board" loading="lazy"><figcaption>Assembled three-phase motor controller</figcaption></figure>
+        <figure><img src="images/eco_pcb_render.jpg" alt="Motor controller PCB render in Altium" loading="lazy"><figcaption>Controller layout in Altium: phases A–C and STM32</figcaption></figure>
+        <figure><img src="images/eco_tpu.jpg" alt="Track Performance Unit telemetry board" loading="lazy"><figcaption>Track Performance Unit telemetry board</figcaption></figure>
+        <figure><img src="images/eco_wiring2.jpg" alt="Electronics bay wiring" loading="lazy"><figcaption>Electronics bay: control board, fan, relay</figcaption></figure>
+        <figure><img src="images/eco_team.jpg" alt="Team during technical inspection" loading="lazy"><figcaption>Electrical checks at technical inspection</figcaption></figure>
+        <figure><img src="images/eco_estop.jpg" alt="Emergency stop and steering column" loading="lazy"><figcaption>Emergency stop and steering column</figcaption></figure>
+        <figure><img src="images/eco_stand_cad.jpg" alt="CAD of hub motor test stand" loading="lazy"><figcaption>Hub-motor test stand, SolidWorks</figcaption></figure>
+        <figure><img src="images/eco_stand.jpg" alt="Laser-cut hub motor test stand" loading="lazy"><figcaption>Laser-cut stand with motor and disc brake</figcaption></figure>
+        <figure><img src="images/eco_insp.jpg" alt="The car at technical inspection" loading="lazy"><figcaption>The car at technical inspection, Indianapolis</figcaption></figure>
+        <figure><img src="images/eco_body.jpg" alt="Composite body of the car" loading="lazy"><figcaption>Composite body with sponsors</figcaption></figure>
+      </div>
+    </article>
+
+    <!-- ===================== FrED Factory ===================== -->
+    <article class="feature" id="f-fred">
+      <div class="f-top">
+        <div class="f-text">
+          <div class="f-eyebrow"><span>MIT × Tec de Monterrey</span><span>Jan – Jun 2025</span><span>10-person team</span></div>
+          <h3>FrED Factory: a robotic assembly cell</h3>
+          <p>FrED (Fiber Extrusion Device) is a desktop machine developed at MIT that pulls thin fiber from plastic, used to teach manufacturing and process control. In this joint MIT–Tec challenge, our team designed an automated cell where a KUKA industrial robot assembles FrED units from their parts, the way a small production line would.</p>
+          <div class="f-role"><div class="label">My role</div><p>Mechanical Systems Team Leader. I led the mechanical design of the gripper, the part feeders and the assembly sequence, and coordinated with the robot programming team.</p></div>
+        </div>
+        <figure class="f-hero"><img src="images/fred_photo.jpg" alt="Assembly cell prototype next to the KUKA robot"><figcaption>Cell prototype in the lab, next to the KUKA robot.</figcaption></figure>
+      </div>
+      <div class="label f-sub">How the cell fits together</div>
+      <div class="subs">
+        <div class="sub mine"><div class="who">Mechanical team · my area</div><h4>Gripper and tooling</h4><p>Custom gripper fingers modeled in Onshape and 3D-printed, shaped to hold FrED's parts securely while the robot moves them.</p></div>
+        <div class="sub mine"><div class="who">Mechanical team · my area</div><h4>Feeders and fixtures</h4><p>Fixture plate with locators and nests that present each part in a known position, prototyped with laser-cut MDF and 3D printing.</p></div>
+        <div class="sub mine"><div class="who">Mechanical team · my area</div><h4>Assembly sequence</h4><p>Order of operations and robot reach checked in Siemens Process Simulate, with tolerance analysis so parts fit on the first try.</p></div>
+        <div class="sub"><div class="who">Whole team</div><h4>Robot table</h4><p>Steel-frame table with a wood top that carries the robot, fixtures and feeders at the right heights.</p></div>
+        <div class="sub"><div class="who">Team</div><h4>Robot program</h4><p>Robot routines that run the assembly sequence, from parts in the feeders to a finished unit.</p></div>
+      </div>
+      <div class="f-stats">
+        <div><b>10 units</b><span>assembled fully autonomously</span></div>
+        <div><b>3 subsystems</b><span>under my lead: gripper, feeders, sequence</span></div>
+        <div><b>10</b><span>students on the team</span></div>
+      </div>
+      <div class="f-gal">
+        <figure><img src="images/fred_cad.jpg" alt="Fixture layout on the assembly plate" loading="lazy"><figcaption>Fixture layout: locators (blue) and nests (red)</figcaption></figure>
+        <figure><img src="images/fred_gripper.jpg" alt="Gripper finger CAD" loading="lazy"><figcaption>Gripper finger, Onshape</figcaption></figure>
+        <figure><img src="images/fred_table.jpg" alt="Robot table design" loading="lazy"><figcaption>Robot table design</figcaption></figure>
+        <figure><img src="images/fred_robot.jpg" alt="Industrial robot model" loading="lazy"><figcaption>KUKA robot model used for the cell layout</figcaption></figure>
+      </div>
+    </article>
+
+    <!-- ===================== ChemE Cube ===================== -->
+    <article class="feature" id="f-chem">
+      <div class="f-top">
+        <div class="f-text">
+          <div class="f-eyebrow"><span>AIChE ChemE Cube</span><span>National competition · 2024</span><span>Mechanical design lead</span></div>
+          <h3>Tecseract: a CO₂-capture cube</h3>
+          <p>ChemE Cube, run by the American Institute of Chemical Engineers, asks student teams to build a working chemical process inside a cube about one foot per side. Our Tecseract pulls ambient air through a series of packed adsorption columns that remove humidity and CO₂, a small version of the direct-air-capture systems being developed for climate goals.</p>
+          <div class="f-role"><div class="label">My role</div><p>Mechanical design lead. I designed and built the structure and the 3D-printed column holders, so the process fit the size limits and assembled reliably.</p></div>
+        </div>
+        <figure class="f-hero"><img src="images/chem_photo.jpg" alt="Finished Tecseract prototype"><figcaption>The finished cube: frame, three columns and air lines.</figcaption></figure>
+      </div>
+      <div class="label f-sub">How the cube fits together</div>
+      <div class="subs">
+        <div class="sub mine"><div class="who">My area</div><h4>Structure</h4><p>Aluminum-profile frame sized to 0.98 × 1 × 0.98 ft, the competition limit, with room for tubing and access to each column.</p></div>
+        <div class="sub mine"><div class="who">My area</div><h4>Column holders</h4><p>3D-printed holders and supports designed for tolerance and fit, so the columns stay sealed and aligned during operation.</p></div>
+        <div class="sub"><div class="who">Team</div><h4>Adsorption process</h4><p>Packed beds of silica gel for humidity and Zeolite 13X for CO₂, with air at a controlled 1.5 L/min.</p></div>
+        <div class="sub"><div class="who">Team</div><h4>Simulation and testing</h4><p>Flow simulation of a column, then breakthrough-curve tests to tune adsorbent amount and flow for longer capture time.</p></div>
+      </div>
+      <div class="f-stats">
+        <div><b>&gt;90%</b><span>CO₂ adsorption</span></div>
+        <div><b>8th</b><span>place nationally</span></div>
+        <div><b>1.5 L/min</b><span>controlled air flow</span></div>
+      </div>
+      <div class="f-gal">
+        <figure><img src="images/chem_cad.jpg" alt="CAD of the cube" loading="lazy"><figcaption>CAD of frame and column holders</figcaption></figure>
+        <figure><img src="images/chem_cfd.jpg" alt="Flow simulation of a column" loading="lazy"><figcaption>Flow simulation of an adsorption column</figcaption></figure>
+        <figure><img src="images/chem_team.jpg" alt="The ChemE Cube team" loading="lazy"><figcaption>The Tecseract team</figcaption></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="band" id="projects">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Projects</div><div><h2>More Projects</h2><p>University and team projects grouped by discipline, several of them set by industry partners. Open any card for the objective, my role, the approach and the results.</p></div></div>
+    <div class="partners"><span class="label">Industry partners</span><span>Schneider Electric</span><span>KEMET</span><span>3D Factory MX</span></div>
+    <div class="filters" role="group" aria-label="Filter projects by discipline" id="filters"></div>
+    <div id="cats"></div>
+  </div>
+</section>
+
+<section class="band alt" id="resume">
+  <div class="wrap">
+    <div class="sec-head"><div class="label">Resume</div><div><h2>Education and skills</h2></div></div>
+    <div class="two">
+      <div class="edu">
+        <div><div class="label num">Aug 2022 – Dec 2026</div><div class="t">Tecnológico de Monterrey</div><div class="m">B.S. Mechatronics Engineering · GPA 95/100 · Monterrey</div></div>
+        <div><div class="label num">Oct 2025 – Apr 2026</div><div class="t">Karlsruhe Institute of Technology (KIT)</div><div class="m">Mechanical Engineering exchange · DAAD KOSPIE scholarship · Mechanical Design A, CAE-Basics, Automotive Engineering I, Data-Driven Algorithms in Vehicle Technology</div></div>
+        <div><div class="label">Germany</div><div class="t">InterDaF, Leipzig</div><div class="m">Intensive German course to B2 level</div></div>
+      </div>
+      <div class="skills"><dl>
+        <div class="row"><dt>CAD &amp; PDM</dt><dd>Creo Parametric, Autodesk Inventor, SolidWorks, Windchill, Teamcenter</dd></div>
+        <div class="row"><dt>Design</dt><dd>GD&amp;T, technical drawings, tolerance analysis, BOMs, mechanism design, DFM/DFA</dd></div>
+        <div class="row"><dt>CAE &amp; simulation</dt><dd>Altair Inspire, SimSolid, Ansys, FEA, Siemens Process Simulate, EcoStruxure Machine Expert Twin</dd></div>
+        <div class="row"><dt>Manufacturing</dt><dd>Injection molding, sheet metal and stamping, machining, 3D printing, prototyping</dd></div>
+        <div class="row"><dt>Programming</dt><dd>Python (pandas, NumPy, scikit-learn), C/C++, ROS, MATLAB/Simulink, SQL, LabVIEW</dd></div>
+        <div class="row"><dt>Electronics &amp; control</dt><dd>STM32, Arduino, Raspberry Pi, Pixhawk, PID control, Altium</dd></div>
+        <div class="row"><dt>Data &amp; statistics</dt><dd>Regression, classification, clustering, design of experiments, ANOVA, CRISP-DM</dd></div>
+        <div class="row"><dt>Design methods</dt><dd>QFD, function trees, concept selection, FMEA, 5 Whys</dd></div>
+        <div class="row"><dt>Languages</dt><dd>Spanish (native), English (fluent), German (B2)</dd></div>
+      </dl></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap contact">
+    <div>
+      <div class="label">Contact</div>
+      <h2 style="margin-top:12px">Let's Build Something.</h2>
+      <p class="lede">I'm looking for mechanical design, product development and manufacturing roles starting January 2027, in Monterrey or abroad.</p>
+    </div>
+    <div class="clist">
+      <div><div><div class="label">Email</div><div class="val" id="v-mail">fcoalanmayoral@hotmail.com</div></div><button class="copy" data-copy="v-mail">Copy</button></div>
+      <div><div><div class="label">Phone · WhatsApp</div><div class="val num" id="v-tel">+52 662 329 5257</div></div><button class="copy" data-copy="v-tel">Copy</button></div>
+      <div><div><div class="label">LinkedIn</div><div class="val">linkedin.com/in/f-mayoral</div></div><a class="copy" href="https://linkedin.com/in/f-mayoral" target="_blank" rel="noopener">Open</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><nav aria-label="Footer"><a href="#about">About</a><a href="#experience">Experience</a><a href="#featured">Featured</a><a href="#projects">Projects</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav><div>© 2026 — Francisco Alan Mayoral Valenzuela · Monterrey, Nuevo León</div><a href="https://linkedin.com/in/f-mayoral" target="_blank" rel="noopener" style="color:#eef0f4">LinkedIn</a></div></footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg-head"><div><div class="label" id="dlg-meta"></div><h3 id="dlg-title"></h3></div><button class="x" id="dlg-x" aria-label="Close">✕</button></div>
+  <div class="dlg-body" id="dlg-body"></div>
+</dialog>
+
+<script>
+const IMG = {
+ "chem_cad": "images/chem_cad.jpg",
+ "chem_cfd": "images/chem_cfd.jpg",
+ "chem_photo": "images/chem_photo.jpg",
+ "chem_team": "images/chem_team.jpg",
+ "doe_anova": "images/doe_anova.jpg",
+ "doe_car": "images/doe_car.jpg",
+ "doe_pareto": "images/doe_pareto.jpg",
+ "drone_cam": "images/drone_cam.jpg",
+ "drone_platform": "images/drone_platform.jpg",
+ "eco_body": "images/eco_body.jpg",
+ "eco_estop": "images/eco_estop.jpg",
+ "eco_insp": "images/eco_insp.jpg",
+ "eco_pcb": "images/eco_pcb.jpg",
+ "eco_pcb_render": "images/eco_pcb_render.jpg",
+ "eco_roller": "images/eco_roller.jpg",
+ "eco_stand": "images/eco_stand.jpg",
+ "eco_stand_cad": "images/eco_stand_cad.jpg",
+ "eco_team": "images/eco_team.jpg",
+ "eco_tpu": "images/eco_tpu.jpg",
+ "eco_wiring2": "images/eco_wiring2.jpg",
+ "fin_code": "images/fin_code.jpg",
+ "fin_pred": "images/fin_pred.jpg",
+ "floor_circuit": "images/floor_circuit.jpg",
+ "floor_support": "images/floor_support.jpg",
+ "fred_cad": "images/fred_cad.jpg",
+ "fred_gripper": "images/fred_gripper.jpg",
+ "fred_photo": "images/fred_photo.jpg",
+ "fred_robot": "images/fred_robot.jpg",
+ "fred_table": "images/fred_table.jpg",
+ "gk_1": "images/gk_1.jpg",
+ "gk_2": "images/gk_2.jpg",
+ "kem_current": "images/kem_current.jpg",
+ "kem_gdt": "images/kem_gdt.jpg",
+ "kem_new": "images/kem_new.jpg",
+ "kem_spider": "images/kem_spider.jpg",
+ "ros_graph": "images/ros_graph.jpg",
+ "ros_layout": "images/ros_layout.jpg",
+ "ros_plot": "images/ros_plot.jpg",
+ "sch_cell": "images/sch_cell.jpg",
+ "sch_hmi": "images/sch_hmi.jpg",
+ "sch_lab": "images/sch_lab.jpg",
+ "sch_vision": "images/sch_vision.jpg",
+ "stm_flow": "images/stm_flow.jpg",
+ "stm_profile": "images/stm_profile.jpg",
+ "stm_wiring": "images/stm_wiring.jpg",
+ "tr_cad": "images/tr_cad.jpg",
+ "tr_proto": "images/tr_proto.jpg",
+ "tr_schem": "images/tr_schem.jpg",
+ "tr_sketch": "images/tr_sketch.jpg",
+ "vib_fea": "images/vib_fea.jpg",
+ "vib_test": "images/vib_test.jpg",
+ "wine_corr": "images/wine_corr.jpg",
+ "wine_roc": "images/wine_roc.jpg",
+ "wine_sil": "images/wine_sil.jpg"
+};
+const DRONE_SVG = `<svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#c9ccff" aria-hidden="true"><g transform="translate(120 46)"><line x1="-46" y1="0" x2="46" y2="0"/><rect x="-14" y="-6" width="28" height="12" fill="#0a0b10"/><ellipse cx="-50" cy="-4" rx="18" ry="3"/><ellipse cx="50" cy="-4" rx="18" ry="3"/><line x1="-50" y1="-4" x2="-50" y2="2"/><line x1="50" y1="-4" x2="50" y2="2"/><line x1="0" y1="6" x2="0" y2="16" stroke-dasharray="3 3"/></g><path d="M118 70 l-30 52 M122 70 l30 52" stroke-dasharray="2 4" opacity=".6"/><rect x="70" y="122" width="100" height="8" fill="#0a0b10"/><rect x="108" y="114" width="24" height="8"/><path d="M190 106 v40 M184 112 l6 -6 6 6 M184 140 l6 6 6 -6" stroke="#ffb37a"/><text x="200" y="130" font-family="IBM Plex Mono,monospace" font-size="9" fill="#ffb37a" stroke="none">±A</text></svg>`;
+const CATS = [
+ {id:"mech",name:"Mechanical Design & CAD",desc:"Parts and assemblies from concept to drawing: material choice, tolerances, GD&T and FEA."},
+ {id:"mfg",name:"Manufacturing & Automation",desc:"Assembly cells, inspection stations and process choices for production."},
+ {id:"robo",name:"Robotics, Controls & Electronics",desc:"Embedded control, mobile robots, drones and vehicle electronics."},
+ {id:"data",name:"Programming, Data & Statistics",desc:"Python, machine learning, regression and design of experiments."}
+];
+const P = [
+ /* ---------- Mechanical Design & CAD ---------- */
+ {id:"kemet",cat:"mech",partner:"KEMET",title:"Centrifuge Pot Redesign for Capacitor Molding",meta:"Materials & Manufacturing · Apr 2024",
+  kpi:"GD&T to ±0.005 in",tags:["SolidWorks","GD&T","Material selection"],
+  blurb:"Redesigned the neoprene pot KEMET uses to mold capacitors in a centrifuge, to stop leaks and premature wear.",
+  img:["kem_new","kem_current","kem_gdt","kem_spider"],
+  caps:["Proposed pot: interlocking castellated base and side handles","Current all-neoprene pots, worn and leaking","Pot with toleranced features","New steel lid with the load-spreading top support"],
+  role:"Team of 6.",
+  obj:["Reduce capacitor rejects caused by water leaks and worn neoprene pots in KEMET's centrifuge molding process.","Keep the original height (3.38 in), outer diameter (6.38 in) and interior volume so the pot fits existing equipment."],
+  how:["Moved the outer shell from neoprene to alumina ceramic for hardness and heat resistance, with a thin replaceable neoprene liner (0.08–0.1 in) to protect the capacitors.","Added a lid that covers the full rim, castellated features so stacked pots lock and spin as one unit, and a top support that spreads the clamping-screw load over 10.64 in².","Assigned tolerances by process: ±0.01 in for cast steel parts, ±0.005 in for injection-molded alumina, and bilateral tolerances for the molded neoprene.","Compared hardness and rupture strength of candidate materials and chose a manufacturing process for each one."],
+  res:["Complete SolidWorks assembly, BOM and toleranced drawings for the proposal.","Only the neoprene liner needs replacing when it wears, instead of the whole pot.","Assembly weight 11.45 lb, about 1 lb more than the original."]},
+ {id:"vib",cat:"mech",partner:"3D Factory MX",title:"Musical Vibrating Floor",meta:"Mechatronic Integration · Jun 2024",
+  kpi:"120 kg per TPU support",tags:["SolidWorks","FEA","TPU","Arduino"],
+  blurb:"A 60 × 60 cm platform that vibrates with the bass of the music, for clubs and bars.",img:["vib_test","floor_support","vib_fea","floor_circuit"],
+  caps:["Prototype during testing","Hexagonal TPU support, SolidWorks","FEA of the TPU support","Circuit: electret mic, Arduino and AC dimmer (Fritzing)"],
+  role:"Team of 5.",
+  obj:["Build a platform for partner 3D Factory MX that adds touch to music by vibrating in sync with the bass."],
+  how:["Chose 3D-printed TPU over PLA for elasticity and load capacity, sized the supports with hand calculations and modeled them in SolidWorks.","Checked support deformation with FEA, then assembled two 15 mm MDF boards on four supports with a 40 W vibration motor in the center.","Electret microphone and Arduino with a 60 Hz digital low-pass filter drive the motor through an AC dimmer."],
+  res:["Working prototype that responds to low-frequency sound and varies vibration with the music.","Each support rated for 120 kg."]},
+ {id:"transit",cat:"mech",title:"TransitEase: Public People Mover",meta:"Mechatronic Design · Nov 2024",
+  kpi:"QFD → FMEA → prototype",tags:["QFD","FMEA","SolidWorks","PLC"],
+  blurb:"Concept for an outdoor moving walkway for crowded urban areas, taken from customer needs to a scale prototype.",
+  img:["tr_cad","tr_proto","tr_sketch","tr_schem"],
+  caps:["CAD of the walkway","Scale prototype with motor and electronics","Early concept sketch","Control schematic: PLC, variable frequency drive and safety sensors"],
+  role:"Team of 6.",
+  obj:["Design a people-moving walkway for outdoor public spaces that is safe, accessible and weather resistant."],
+  how:["Ranked customer needs with QFD and broke the product into a function tree.","Generated concepts with a morphological chart and selected the final one: horizontal belt, soft-start motor, integrated solar panels.","Defined control with a PLC and variable frequency drive, presence sensors and emergency stops, and analyzed risks with an FMEA (RPN up to 108).","Built a 3D-printed scale prototype with a hobby motor to test control and safety functions."],
+  res:["Complete design package from requirements to a working scale model.","FMEA actions defined for the highest risks: PLC logic redundancy and self-cleaning presence sensors."]},
+ /* ---------- Manufacturing & Automation ---------- */
+ {id:"schneider",cat:"mfg",partner:"Schneider Electric",title:"Semi-Automated Inspection Cell for Circuit Breakers",meta:"Automation of Manufacturing Systems · Jun 2025",
+  kpi:"1.5 h → ~42 s per unit (est.)",tags:["Cobot","Machine vision","PLC/HMI","Digital twin"],
+  blurb:"Cobot and vision cell that replaces a manual 10-point quality inspection at the bottleneck of a circuit-breaker line.",
+  img:["sch_cell","sch_lab","sch_vision","sch_hmi"],
+  caps:["Digital layout of the cell: aluminum-profile frame, inverted cobot, fixture and HMI","Lexium cobot running inspection routines in the lab","Datalogic camera verifying a label","7-inch HMI showing pass/fail for each inspection point"],
+  role:"Digital Twin Lead in a 10-person team: built and validated the virtual cell in EcoStruxure Machine Expert Twin.",
+  obj:["Automate final inspection and front-cover placement at Workstation 9, the line's bottleneck, where one operator checked 10 labels and grease points by hand and typed results into Excel.","Cut inspection time by at least 30% with a return on investment of at least 10%, following ISO 10218-1 for collaborative robots."],
+  how:["Integrated a Lexium cobot, a Datalogic P15 camera, a TM262 PLC and a 7-inch HMI.","Built the digital layout of the cell: three-level aluminum-profile frame with the cobot mounted inverted (914 mm reach), breaker fixture and side HMI.","Fixed the breaker in a static position after reach and line-of-sight checks, which made label detection more consistent.","PLC logs pass/fail for every point automatically, replacing the paper checklist."],
+  res:["Estimated cycle of about 41.5 s per unit against 1.5 h manual, a 99% reduction (operator positioning not included).","Cobot routines averaged 34 s per unit in testing.","Delivered on schedule with Schneider Electric mentors."]},
+ {id:"drill",cat:"mfg",title:"Drill Guard",meta:"Manufacturing project",
+  kpi:"Filled polymer for stiffness",tags:["Injection molding","Material selection"],
+  blurb:"Injection-molded guard that collects the dust from drilling.",spec:"CaCO₃",
+  role:"Team project.",
+  obj:["Collect the dust produced when drilling holes."],
+  how:["Chose injection molding because of the part's complex geometry.","Added calcium carbonate filler to raise the elastic modulus so the guard withstands the drill's loads."],
+  res:["A molded guard with the stiffness needed for the drilling loads."]},
+ /* ---------- Robotics, Controls & Electronics ---------- */
+ {id:"drone",cat:"robo",title:"Autonomous Drone Landing on an Oscillating Platform",meta:"Capstone · Sep 2026 – present",
+  kpi:"3/3 simulated landings within spec",tags:["Platform design","Stepper + belt drive","Raspberry Pi 5","Pixhawk","ArUco"],
+  blurb:"Low-cost quadrotor that tracks a marker on a moving platform and lands on it. I design and build the moving platform.",
+  img:["drone_platform","drone_cam"],caps:["Oscillating platform I designed: CPVC scissor lift driven by a stepper and belt (SolidWorks)","Raspberry Pi 5 and downward global-shutter camera in a 3D-printed mount under the F450"],
+  role:"Team of 3. I lead the oscillating platform; teammates lead control and vision. Co-author of the research paper.",
+  obj:["Land an F450 quadrotor autonomously on a platform that moves up and down while it drives horizontally, using only onboard, low-cost hardware.","Platform target: 30 cm vertical stroke at 0.2–0.5 Hz on a base that also moves along X.","Landing targets: touchdown error ≤10 cm, landing in ≤90 s and a success rate of at least 90%."],
+  how:["Platform (my part): CPVC scissor lift driven by a stepper motor and belt on an aluminum extrusion, on a base that carries the power supply, Arduino and eight wheels, four per side, each driven by a DC gear motor.","Raised the speed of the lift by changing the pulley from 20 to 60 teeth (3× more belt per revolution) and moving to a 2 A stepper for the extra torque. The original setup took 21 s per cycle (≈0.05 Hz).","Vision and control (team): a Raspberry Pi 5 with a global-shutter OV9281 camera reads a nested ArUco marker (18 cm and 2 cm) and runs a PD + feedforward position loop; the Pixhawk running ArduCopter holds attitude.","Full landing loop simulated in Gazebo with ArduPilot SITL, with a Kalman filter that estimates the platform's oscillation."],
+  res:["Simulation: 3 of 3 landings met every criterion, with horizontal error under 0.3 cm at 0.3 and 0.5 Hz.","Feedforward cut height-tracking error by about half compared with PD alone.","Bench test without propellers: correct command direction in 88–99% of samples, and the Pixhawk reaches ±5° in 0.5 s.","Next: measure the platform's real cycle time up to 0.5 Hz and fly the first hover. Paper draft due December 2026."]},
+ {id:"stm",cat:"robo",title:"Autonomous Vehicle on STM32",meta:"Industrial Automation · Nov 2024",
+  kpi:"PI distance control",tags:["STM32","C","PID","Bluetooth"],
+  blurb:"Scale car that drives a programmed square route on its own or by Bluetooth, and stops for obstacles.",
+  img:["stm_profile","stm_wiring","stm_flow"],
+  caps:["Trapezoidal speed profile: setpoint vs. measured","Wiring of STM32, H-bridge, encoder motor, servo, ultrasonic sensor and LCD","Program flow with interrupt handler"],
+  role:"Team of 4. I designed and tuned the distance controller.",
+  obj:["Build a scale vehicle on an STM32 Blue Pill that runs a square route autonomously, stopping 10 s at each corner, and can be driven manually over Bluetooth."],
+  how:["Ackermann steering with an MG996R servo, a GM25-370 encoder motor through an L298N H-bridge, HC-05 Bluetooth and HC-SR04 ultrasonic sensor.","Position loop on encoder counts with anti-windup and output limits. I tuned the PID gains and we kept a PI controller because it followed the route more smoothly.","The loop corrects a trapezoidal speed profile so the car accelerates and brakes smoothly at each corner."],
+  res:["Completed the square route, stopping at each corner and returning to the start.","Pause and resume on command, and automatic stop for obstacles under 20 cm."]},
+ {id:"ros",cat:"robo",title:"Multi-Robot Warehouse in ROS",meta:"Design and Development of Robots · Mar 2025",
+  kpi:"3 robots, no collisions",tags:["ROS Noetic","C++","Control"],
+  blurb:"Three differential-drive robots that carry items from storage racks to production lines in an 11 × 11 m warehouse.",
+  img:["ros_layout","ros_plot","ros_graph"],
+  caps:["Warehouse layout: racks A–E, lines 1–3 and parking stations","Pose and velocity response of one robot","ROS node and topic graph"],
+  role:"Team of 4.",
+  obj:["Simulate a multi-robot warehouse where each robot visits every rack and production line and returns to its parking station."],
+  how:["Wrote a closed-loop proportional controller in C++ with ROS Noetic and Turtlesim, tuned to K1 = 0.5 and K2 = 10.","Added priority-based collision avoidance: a lower-priority robot yields when another robot comes within 1.5 m in front of it."],
+  res:["Smooth transitions between waypoints and stable motor commands.","All three robots completed their routes without collisions."]},
+ {id:"gk",cat:"robo",title:"Automated Table-Football Goalkeeper",meta:"Mechatronic Systems Implementation",
+  kpi:"Belt-driven linear axis",tags:["SolidWorks","Linear axis","3D printing"],
+  blurb:"An automated goalkeeper for table football competitions.",img:["gk_2","gk_1"],
+  caps:["Goalkeeper on its linear axis","Team testing on the competition table"],
+  role:"Team project.",
+  obj:["Build an automated goalkeeper to compete in table football."],
+  how:["SolidWorks assembly with a carriage on V-wheels running along a 2020 V-slot aluminum profile, driven by a GT2 belt and 20-tooth pulleys.","Solenoid actuator, MDF table parts and 3D-printed holders."],
+  res:["Tested by the team on the competition table."]},
+ /* ---------- Programming, Data & Statistics ---------- */
+ {id:"wine",cat:"data",title:"Wine Quality Prediction",meta:"Data Analysis Projects · Nov 2023",
+  kpi:"79% classification accuracy",tags:["Python","scikit-learn","pandas"],
+  blurb:"Found which chemical properties drive wine quality in a dataset of 4,898 samples.",
+  img:["wine_corr","wine_roc","wine_sil"],
+  caps:["Correlation matrix of the chemical variables","ROC curve of the binary classifier (AUC 0.79)","Silhouette plot of K-Means clusters"],
+  role:"Team of 4.",
+  obj:["Identify at least three factors that most affect wine quality and build models to predict it."],
+  how:["Cleaned the data in Python: filled missing values, capped outliers at the 5th and 95th percentiles and standardized variables.","Trained decision trees, linear and logistic regression, and K-Means clustering with scikit-learn.","Removed multicollinear variables and used p-values to keep only significant predictors."],
+  res:["Logistic regression reached 79% accuracy classifying higher vs. lower quality wine; decision trees reached 78%."]},
+ {id:"fin",cat:"data",title:"Personal Expense Prediction",meta:"Mathematics & Data Science · Nov 2024",
+  kpi:"R² = 0.94",tags:["Python","Linear regression","CRISP-DM"],
+  blurb:"Regression model that predicts what an activity will cost from a semester of logged expenses.",
+  img:["fin_pred","fin_code"],
+  caps:["Predicted vs. actual cost on the test set","Model training with scikit-learn"],
+  role:"Individual project.",
+  obj:["Predict the cost of daily activities from budget, time spent, activity type, time of day and group size, to plan a student budget."],
+  how:["Followed CRISP-DM from problem definition to evaluation.","Logged 300 daily activities over a semester and prepared the data in pandas.","Trained a multiple linear regression with scikit-learn and compared it with the same model in Excel."],
+  res:["The final model explained 94% of the variation in cost (R² = 0.94)."]},
+ {id:"doe",cat:"data",title:"Design of Experiments: Cardboard Toy Car",meta:"Design & Analysis of Experiments · Oct 2023",
+  kpi:"Optimum ≈ 1.65 m/s",tags:["2² factorial","ANOVA","Optimization"],
+  blurb:"Glue-free cardboard toy car for donation, optimized for speed with a factorial experiment.",
+  img:["doe_car","doe_pareto","doe_anova"],
+  caps:["Cardboard car built from a single piece, without glue","Pareto chart of standardized effects","ANOVA table"],
+  role:"Team of 4.",
+  obj:["Find which body shape and wheel size make a cardboard toy car fastest."],
+  how:["Built pick-up and F1-style bodies, a quarter meter long, from cardboard with no glue.","Ran a 2² factorial design (body × wheel size) in 3 blocks, 12 runs, combining time and distance into speed.","Analyzed effects with ANOVA and a Pareto chart, then optimized the response."],
+  res:["Body shape was the only significant factor (p = 0.003).","Best combination: F1 body with small wheels, predicted 1.65 m/s."]}
+];
+const cats=document.getElementById('cats'), filters=document.getElementById('filters');
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function ph(p){
+  if(p.img) return `<div class="ph"><img src="${IMG[p.img[0]]}" alt="${esc(p.caps[0])}" loading="lazy"></div>`;
+  if(p.svg) return `<div class="ph spec">${DRONE_SVG}</div>`;
+  return `<div class="ph spec"><svg viewBox="0 0 240 160" fill="none" stroke="#c9ccff" stroke-width="1.5" aria-hidden="true"><path d="M60 40 h90 l30 30 v50 h-120 z" fill="#0a0b10"/><circle cx="110" cy="85" r="18"/><line x1="110" y1="20" x2="110" y2="67" stroke-dasharray="4 3"/><text x="150" y="140" font-family="IBM Plex Mono,monospace" font-size="10" fill="#ffb37a" stroke="none">Polymer + ${p.spec}</text></svg></div>`;
+}
+const card=p=>`<button class="card" data-id="${p.id}">${ph(p)}<div class="body">${p.partner?`<div class="partner">Industry partner · ${esc(p.partner)}</div>`:''}<div class="label">${esc(p.meta)}</div><h3>${esc(p.title)}</h3><p>${esc(p.blurb)}</p><div class="kpi">${esc(p.kpi)}</div><div class="tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div></div><div class="open">View project →</div></button>`;
+cats.innerHTML=CATS.map(c=>{const ps=P.filter(p=>p.cat===c.id);return `<div class="cat" data-cat="${c.id}" id="cat-${c.id}"><div class="cat-head"><h3>${esc(c.name)} <span class="count num">${ps.length}</span></h3><p>${esc(c.desc)}</p></div><div class="grid n${ps.length}">${ps.map(card).join('')}</div></div>`}).join('');
+filters.innerHTML=`<button class="chip" data-f="all" aria-pressed="true">All <span class="num">${P.length}</span></button>`+CATS.map(c=>`<button class="chip" data-f="${c.id}" aria-pressed="false">${esc(c.name)} <span class="num">${P.filter(p=>p.cat===c.id).length}</span></button>`).join('');
+filters.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;
+  filters.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
+  const f=c.dataset.f; cats.querySelectorAll('.cat').forEach(k=>k.hidden=!(f==='all'||k.dataset.cat===f));
+});
+const dlg=document.getElementById('dlg');
+const li=a=>`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+cats.addEventListener('click',e=>{
+  const cd=e.target.closest('.card'); if(!cd) return;
+  const p=P.find(x=>x.id===cd.dataset.id);
+  document.getElementById('dlg-meta').textContent=(p.partner?'Industry partner: '+p.partner+' · ':'')+p.meta;
+  document.getElementById('dlg-title').textContent=p.title;
+  const gal=p.img?`<div class="gallery">${p.img.map((k,i)=>`<figure><img src="${IMG[k]}" alt="${esc(p.caps[i])}"><figcaption>${esc(p.caps[i])}</figcaption></figure>`).join('')}</div>`:'';
+  const top=`<div class="dlg-sum"><div><div class="label">Key result</div><div class="kpi big">${esc(p.kpi)}</div></div><div><div class="label">My role</div><p>${esc(p.role)}</p></div><div><div class="label">Tools &amp; methods</div><div class="tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div></div></div>`;
+  document.getElementById('dlg-body').innerHTML=top+gal+`<div class="oh"><div><div class="label">Objective</div>${li(p.obj)}</div><div><div class="label">Approach</div>${li(p.how)}</div><div><div class="label">Results</div>${li(p.res)}</div></div>`;
+  dlg.showModal(); dlg.scrollTop=0;
+});
+document.querySelectorAll('.f-gal figure').forEach(fg=>{fg.tabIndex=0;const open=()=>{const im=fg.querySelector('img'),art=fg.closest('.feature');document.getElementById('dlg-meta').textContent=art.querySelector('h3').textContent;document.getElementById('dlg-title').textContent=fg.querySelector('figcaption').textContent;document.getElementById('dlg-body').innerHTML='<div class="lb"><img src="'+im.src+'" alt="'+im.alt.replace(/"/g,'')+'"></div>';dlg.showModal();};fg.addEventListener('click',open);fg.addEventListener('keydown',e=>{if(e.key==='Enter')open()});});
+document.getElementById('dlg-x').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+document.querySelectorAll('button.copy').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.copy), t=el.textContent.trim();
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';};
+  try{navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied'},sel)}catch(_){sel()}
+  setTimeout(()=>b.textContent='Copy',1800);
+}));
+
+const hdr=document.getElementById('top'),menu=document.getElementById('menu'),burger=document.getElementById('burger');
+const onScroll=()=>hdr.classList.toggle('solid',scrollY>40);addEventListener('scroll',onScroll,{passive:true});onScroll();
+const setMenu=o=>{menu.hidden=!o;burger.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';if(o)document.getElementById('menu-x').focus();};
+burger.addEventListener('click',()=>setMenu(true));document.getElementById('menu-x').addEventListener('click',()=>setMenu(false));
+menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden)setMenu(false)});
+</script>
+</body>
+</html>
