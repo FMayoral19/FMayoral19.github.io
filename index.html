@@ -219,6 +219,10 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
 .f-stats>div{padding:16px 18px;border-radius:12px;background:var(--bg)}
 .f-stats b{display:block;font:800 1.5rem/1.1 var(--f-display);letter-spacing:-.02em}
 .f-stats span{display:block;margin-top:6px;font-size:.86rem;color:var(--muted);line-height:1.45}
+.f-gal figure.wide{grid-column:span 2}
+.f-gal figure.wide img{aspect-ratio:2/1;object-fit:contain;background:#fff;padding:6px}
+.f-next{margin:14px 0 0;font-size:.92rem;color:var(--muted)}
+.f-next b{color:var(--fg)}
 .f-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .f-gal figure{margin:0;cursor:zoom-in;border-radius:10px;overflow:hidden;background:var(--bg)}
 .f-gal img{display:block;width:100%;aspect-ratio:1;object-fit:cover;transition:transform .2s}
@@ -532,7 +536,46 @@ footer nav a:first-child{border-left:0}
 
 <section class="band alt" id="featured">
   <div class="wrap">
-    <div class="sec-head"><div class="label">Featured</div><div><h2>Featured Projects</h2><p>Three team projects explained as complete systems: what the whole team built, how the parts fit together, and which part was mine.</p></div></div>
+    <div class="sec-head"><div class="label">Featured</div><div><h2>Featured Projects</h2><p>Four team projects explained as complete systems: what the whole team built, how the parts fit together, and which part was mine.</p></div></div>
+
+    <!-- ===================== Drone landing (capstone) ===================== -->
+    <article class="feature" id="f-drone">
+      <div class="f-top">
+        <div class="f-text">
+          <div class="f-eyebrow"><span>Capstone · Tec de Monterrey</span><span>Sep 2026 – present</span><span>Paper submitted to <i>Drones</i> (MDPI)</span></div>
+          <h3>Camera-based drone landing on an oscillating platform</h3>
+          <p>Landing a drone on a surface that moves, like a ship deck or a vehicle, means estimating that motion and timing the touchdown despite the delays of onboard vision and control. Our capstone builds a low-cost system for it: an F450 quadrotor with a Pixhawk autopilot, a Raspberry Pi 5 and a downward global-shutter camera that reads a printed ArUco pad, plus a platform that oscillates vertically while it drives horizontally, for tests in the indoor Flight Cage.</p>
+          <div class="f-role"><div class="label">My role</div><p>I designed and built the oscillating platform: scissor lift, stepper and belt drive, skid-steered wheeled base and its electronics. Co-author of the research paper, where I wrote the platform section.</p></div>
+        </div>
+        <figure class="f-hero"><img src="images/drone_platform.jpg" alt="CAD model of the scissor-lift platform"><figcaption>The scissor-lift platform I designed in SolidWorks.</figcaption></figure>
+      </div>
+      <div class="label f-sub">How the system fits together</div>
+      <div class="subs four">
+        <div class="sub mine"><div class="who">My design</div><h4>Scissor lift</h4><p>Tubes joined by tee and elbow connectors, one scissor pair per side. A carriage on a linear guide moves the sliding ends of the arms, raising the landing pad about 25 cm while keeping it level.</p></div>
+        <div class="sub mine"><div class="who">My design</div><h4>Drive and speed-up</h4><p>A stepper moves the carriage through a toothed belt. The first version took about 21 s per cycle, so I changed the pulley from 20 to 60 teeth (3× travel per turn) and moved to a stronger stepper, about 7 s per cycle at the same motor speed (calculated).</p></div>
+        <div class="sub mine"><div class="who">My design</div><h4>Non-linear motion</h4><p>A scissor lift is not linear (h = L sin β), so a steady carriage speed does not give a sine wave in height. I derived the carriage path and step rate the stepper must follow to produce one.</p></div>
+        <div class="sub mine"><div class="who">My design</div><h4>Wheeled base and electronics</h4><p>Eight gear motors, skid-steered by two L298N H-bridges, for a zigzag path. One Arduino UNO drives the lift (A4988) and the base, with a 24 V supply for the stepper and a fused 3S LiPo for the wheels.</p></div>
+        <div class="sub"><div class="who">Flight team</div><h4>Vehicle and avionics</h4><p>F450 with a Pixhawk on ArduCopter and a Raspberry Pi 5 on a serial MAVLink link. With no GPS indoors, the Pi sends attitude and climb-rate targets and the Pixhawk closes the inner loops.</p></div>
+        <div class="sub"><div class="who">Vision team</div><h4>Camera and landing pad</h4><p>OV9281 global-shutter camera at 60 frames/s reading a nested pad: an 18 cm marker, a 2 cm marker inside it and a ring of eight 3 cm markers, fused into one pose at 56–60 Hz.</p></div>
+        <div class="sub"><div class="who">Flight team</div><h4>Landing program</h4><p>PD control with feedforward and a landing state machine that climbs and retries instead of landing blind. Braking and a touchdown phase lowered contact speed to 0.34–0.40 m/s.</p></div>
+        <div class="sub"><div class="who">Simulation team</div><h4>Landing on the moving pad</h4><p>Gazebo with ArduPilot SITL, using models calibrated from the flights. It measures the platform's period and phase online and starts the final descent just after the lowest point.</p></div>
+      </div>
+      <div class="f-stats">
+        <div><b>100%</b><span>of frames with the pad detected in a 72.6 s hover, at 58.7 Hz</span></div>
+        <div><b>6.6 cm</b><span>median horizontal error hovering at 1 m</span></div>
+        <div><b>9 of 13</b><span>landing attempts over a still or hand-moved pad ended in a landing</span></div>
+        <div><b>42 of 43</b><span>simulated touchdowns on the oscillating pad met the accuracy and impact limits</span></div>
+      </div>
+      <p class="f-next"><b>Next:</b> characterize the platform's real motion and run the landing campaign on the physical platform.</p>
+      <div class="f-gal">
+        <figure class="wide"><img src="images/drone_lift_views.jpg" alt="Scissor lift in isometric, side and front views" loading="lazy"><figcaption>Scissor lift: isometric, side and front views</figcaption></figure>
+        <figure class="wide"><img src="images/drone_schem.jpg" alt="Platform electronics schematic" loading="lazy"><figcaption>Platform electronics: Arduino, A4988 stepper driver, two L298N bridges</figcaption></figure>
+        <figure><img src="images/drone_cam.jpg" alt="Raspberry Pi 5 and camera under the F450" loading="lazy"><figcaption>Raspberry Pi 5 and downward camera under the F450</figcaption></figure>
+        <figure class="wide"><img src="images/drone_gazebo.jpg" alt="Gazebo simulation scene" loading="lazy"><figcaption>Gazebo scene: F450 on the pad, lift and two-axis table</figcaption></figure>
+        <figure class="wide"><img src="images/drone_flight_plot.jpg" alt="Flight landing plot" loading="lazy"><figcaption>Real flight: height and vertical speed during a landing</figcaption></figure>
+        <figure class="wide"><img src="images/drone_sim_plot.jpg" alt="Simulated landing on the oscillating platform" loading="lazy"><figcaption>Simulation: landing on the platform oscillating at 0.3 Hz</figcaption></figure>
+      </div>
+    </article>
 
     <!-- ===================== EcoShell ===================== -->
     <article class="feature" id="f-eco">
@@ -719,10 +762,15 @@ const IMG = {
  "chem_team": "images/chem_team.jpg",
  "degree": "images/degree.jpg",
  "doe_anova": "images/doe_anova.jpg",
- "doe_car": "images/doe_car.jpg",
+ "doe_car_illus": "images/doe_car_illus.jpg",
  "doe_pareto": "images/doe_pareto.jpg",
  "drone_cam": "images/drone_cam.jpg",
+ "drone_flight_plot": "images/drone_flight_plot.jpg",
+ "drone_gazebo": "images/drone_gazebo.jpg",
+ "drone_lift_views": "images/drone_lift_views.jpg",
  "drone_platform": "images/drone_platform.jpg",
+ "drone_schem": "images/drone_schem.jpg",
+ "drone_sim_plot": "images/drone_sim_plot.jpg",
  "eco_estop": "images/eco_estop.jpg",
  "eco_insp": "images/eco_insp.jpg",
  "eco_pcb": "images/eco_pcb.jpg",
@@ -765,10 +813,6 @@ const IMG = {
  "stm_flow": "images/stm_flow.jpg",
  "stm_profile": "images/stm_profile.jpg",
  "stm_wiring": "images/stm_wiring.jpg",
- "tr_cad": "images/tr_cad.jpg",
- "tr_proto": "images/tr_proto.jpg",
- "tr_schem": "images/tr_schem.jpg",
- "tr_sketch": "images/tr_sketch.jpg",
  "vib_fea": "images/vib_fea.jpg",
  "vib_test": "images/vib_test.jpg",
  "wine_corr": "images/wine_corr.jpg",
@@ -779,7 +823,7 @@ const DRONE_SVG = `<svg viewBox="0 0 240 160" fill="none" stroke="currentColor" 
 const CATS = [
  {id:"mech",name:"Mechanical Design & CAD",desc:"Parts and assemblies from concept to drawing: material choice, tolerances, GD&T and FEA."},
  {id:"mfg",name:"Manufacturing & Automation",desc:"Assembly cells, inspection stations and process choices for production."},
- {id:"robo",name:"Robotics, Controls & Electronics",desc:"Embedded control, mobile robots, drones and vehicle electronics."},
+ {id:"robo",name:"Robotics, Controls & Electronics",desc:"Embedded control, mobile robots and vehicle electronics."},
  {id:"data",name:"Programming, Data & Statistics",desc:"Python, machine learning, regression and design of experiments."}
 ];
 const P = [
@@ -801,15 +845,6 @@ const P = [
   obj:["Build a platform for partner 3D Factory MX that adds touch to music by vibrating in sync with the bass."],
   how:["Chose 3D-printed TPU over PLA for elasticity and load capacity, sized the supports with hand calculations and modeled them in SolidWorks.","Checked support deformation with FEA, then assembled two 15 mm MDF boards on four supports with a 40 W vibration motor in the center.","Electret microphone and Arduino with a 60 Hz digital low-pass filter drive the motor through an AC dimmer."],
   res:["Working prototype that responds to low-frequency sound and varies vibration with the music.","Each support rated for 120 kg."]},
- {id:"transit",cat:"mech",title:"TransitEase: Public People Mover",meta:"Mechatronic Design · Nov 2024",
-  kpi:"QFD → FMEA → prototype",tags:["QFD","FMEA","SolidWorks","PLC"],
-  blurb:"Concept for an outdoor moving walkway for crowded urban areas, taken from customer needs to a scale prototype.",
-  img:["tr_cad","tr_proto","tr_sketch","tr_schem"],
-  caps:["CAD of the walkway","Scale prototype with motor and electronics","Early concept sketch","Control schematic: PLC, variable frequency drive and safety sensors"],
-  role:"Team of 6.",
-  obj:["Design a people-moving walkway for outdoor public spaces that is safe, accessible and weather resistant."],
-  how:["Ranked customer needs with QFD and broke the product into a function tree.","Generated concepts with a morphological chart and selected the final one: horizontal belt, soft-start motor, integrated solar panels.","Defined control with a PLC and variable frequency drive, presence sensors and emergency stops, and analyzed risks with an FMEA (RPN up to 108).","Built a 3D-printed scale prototype with a hobby motor to test control and safety functions."],
-  res:["Complete design package from requirements to a working scale model.","FMEA actions defined for the highest risks: PLC logic redundancy and self-cleaning presence sensors."]},
  /* ---------- Manufacturing & Automation ---------- */
  {id:"schneider",cat:"mfg",partner:"Schneider Electric",title:"Semi-Automated Inspection Cell for Circuit Breakers",meta:"Automation of Manufacturing Systems · Jun 2025",
   kpi:"1.5 h → ~42 s per unit (est.)",tags:["Cobot","Machine vision","PLC/HMI","Digital twin"],
@@ -820,22 +855,7 @@ const P = [
   obj:["Automate final inspection and front-cover placement at Workstation 9, the line's bottleneck, where one operator checked 10 labels and grease points by hand and typed results into Excel.","Cut inspection time by at least 30% with a return on investment of at least 10%, following ISO 10218-1 for collaborative robots."],
   how:["Integrated a Lexium cobot, a Datalogic P15 camera, a TM262 PLC and a 7-inch HMI.","Built the digital layout of the cell: three-level aluminum-profile frame with the cobot mounted inverted (914 mm reach), breaker fixture and side HMI.","Fixed the breaker in a static position after reach and line-of-sight checks, which made label detection more consistent.","PLC logs pass/fail for every point automatically, replacing the paper checklist."],
   res:["Estimated cycle of about 41.5 s per unit against 1.5 h manual, a 99% reduction (operator positioning not included).","Cobot routines averaged 34 s per unit in testing.","Delivered on schedule with Schneider Electric mentors."]},
- {id:"drill",cat:"mfg",title:"Drill Guard",meta:"Manufacturing project",
-  kpi:"Filled polymer for stiffness",tags:["Injection molding","Material selection"],
-  blurb:"Injection-molded guard that collects the dust from drilling.",spec:"CaCO₃",
-  role:"Team project.",
-  obj:["Collect the dust produced when drilling holes."],
-  how:["Chose injection molding because of the part's complex geometry.","Added calcium carbonate filler to raise the elastic modulus so the guard withstands the drill's loads."],
-  res:["A molded guard with the stiffness needed for the drilling loads."]},
  /* ---------- Robotics, Controls & Electronics ---------- */
- {id:"drone",cat:"robo",title:"Autonomous Drone Landing on an Oscillating Platform",meta:"Capstone · Sep 2026 – present",
-  kpi:"3/3 simulated landings within spec",tags:["Platform design","Stepper + belt drive","Raspberry Pi 5","Pixhawk","ArUco"],
-  blurb:"Low-cost quadrotor that tracks a marker on a moving platform and lands on it. I design and build the moving platform.",
-  img:["drone_platform","drone_cam"],caps:["Oscillating platform I designed: CPVC scissor lift driven by a stepper and belt (SolidWorks)","Raspberry Pi 5 and downward global-shutter camera in a 3D-printed mount under the F450"],
-  role:"Team of 3. I lead the oscillating platform; teammates lead control and vision. Co-author of the research paper.",
-  obj:["Land an F450 quadrotor autonomously on a platform that moves up and down while it drives horizontally, using only onboard, low-cost hardware.","Platform target: 30 cm vertical stroke at 0.2–0.5 Hz on a base that also moves along X.","Landing targets: touchdown error ≤10 cm, landing in ≤90 s and a success rate of at least 90%."],
-  how:["Platform (my part): CPVC scissor lift driven by a stepper motor and belt on an aluminum extrusion, on a base that carries the power supply, Arduino and eight wheels, four per side, each driven by a DC gear motor.","Raised the speed of the lift by changing the pulley from 20 to 60 teeth (3× more belt per revolution) and moving to a 2 A stepper for the extra torque. The original setup took 21 s per cycle (≈0.05 Hz).","Vision and control (team): a Raspberry Pi 5 with a global-shutter OV9281 camera reads a nested ArUco marker (18 cm and 2 cm) and runs a PD + feedforward position loop; the Pixhawk running ArduCopter holds attitude.","Full landing loop simulated in Gazebo with ArduPilot SITL, with a Kalman filter that estimates the platform's oscillation."],
-  res:["Simulation: 3 of 3 landings met every criterion, with horizontal error under 0.3 cm at 0.3 and 0.5 Hz.","Feedforward cut height-tracking error by about half compared with PD alone.","Bench test without propellers: correct command direction in 88–99% of samples, and the Pixhawk reaches ±5° in 0.5 s.","Next: measure the platform's real cycle time up to 0.5 Hz and fly the first hover. Paper draft due December 2026."]},
  {id:"stm",cat:"robo",title:"Autonomous Vehicle on STM32",meta:"Industrial Automation · Nov 2024",
   kpi:"PI distance control",tags:["STM32","C","PID","Bluetooth"],
   blurb:"Scale car that drives a programmed square route on its own or by Bluetooth, and stops for obstacles.",
@@ -884,8 +904,8 @@ const P = [
  {id:"doe",cat:"data",title:"Design of Experiments: Cardboard Toy Car",meta:"Design & Analysis of Experiments · Oct 2023",
   kpi:"Optimum ≈ 1.65 m/s",tags:["2² factorial","ANOVA","Optimization"],
   blurb:"Glue-free cardboard toy car for donation, optimized for speed with a factorial experiment.",
-  img:["doe_car","doe_pareto","doe_anova"],
-  caps:["Cardboard car built from a single piece, without glue","Pareto chart of standardized effects","ANOVA table"],
+  img:["doe_car_illus","doe_pareto","doe_anova"],
+  caps:["Illustration of the glue-free cardboard car: F1 body, small wheels","Pareto chart of standardized effects","ANOVA table"],
   role:"Team of 4.",
   obj:["Find which body shape and wheel size make a cardboard toy car fastest."],
   how:["Built pick-up and F1-style bodies, a quarter meter long, from cardboard with no glue.","Ran a 2² factorial design (body × wheel size) in 3 blocks, 12 runs, combining time and distance into speed.","Analyzed effects with ANOVA and a Pareto chart, then optimized the response."],
