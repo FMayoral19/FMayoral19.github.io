@@ -357,6 +357,9 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
 .viz .estopbox{fill:#f5c518;stroke:var(--edge);stroke-width:1.2}
 .viz .estop{fill:#e5484d;stroke:var(--edge);stroke-width:1.2}
 .viz .tr{fill:#e5484d;font:700 11px var(--f-body)}
+.subs.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.subs.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.subs.four{grid-template-columns:1fr}}
 /* resume */
 .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
 .edu{display:grid}
@@ -577,7 +580,7 @@ footer nav a:first-child{border-left:0}
           <h3>FrED Factory: robotic assembly cell</h3>
           <p>FrED (Fiber Extrusion Device) is a desktop machine developed at MIT that recreates industrial fiber drawing, used to teach manufacturing and process control. In the FrED Factory lab at Tec, five workstations, each with an industrial or collaborative robot, build the device step by step like a small production line.</p>
           <p>Our Workstation #1 builds the base: three aluminum profiles fastened to an MDF plate. A KUKA robot does the assembly, and an operator prepares parts and checks quality at a sub-assembly station next to it.</p>
-          <div class="f-role"><div class="label">My role</div><p>Mechanical Systems Team Leader. I led the mechanical design of the station (gripper, feeders and assembly sequence), designed the profile and screw feeders myself in SolidWorks, took parts from CAD to laser cutting and 3D printing, and planned the layout and ergonomics of both stations.</p></div>
+          <div class="f-role"><div class="label">My role</div><p>Mechanical Systems Team Leader. I led the mechanical design of the station (gripper, feeders and assembly sequence), designed the feeders and the assembly fixture myself in SolidWorks, took parts from CAD to laser cutting and 3D printing, and planned the layout and ergonomics of both stations.</p></div>
         </div>
         <figure class="f-hero"><img src="images/fred_cell.jpg" alt="Finished FrED assembly cell with the KUKA robot"><figcaption>The finished cell: KUKA robot, fixture and part feeders.</figcaption></figure>
       </div>
@@ -592,15 +595,15 @@ footer nav a:first-child{border-left:0}
       </ol>
 
       <div class="label f-sub">How the cell fits together</div>
-      <div class="subs">
-        <div class="sub mine"><div class="who">My design</div><h4>Profile feeders</h4><p>Gravity feeders for the long and short profiles. Profiles stack vertically, a 135° ramp turns each one horizontal in the exact pick position, and the next one drops in when the robot takes it. Laser-cut MDF.</p></div>
-        <div class="sub mine"><div class="who">My design</div><h4>Screw feeder</h4><p>An inclined channel shaped to the screw delivers each one already oriented. A conical guide at the outlet corrects the last bit of misalignment before the robot picks it.</p></div>
+      <div class="subs four">
+        <div class="sub mine"><div class="who">My design</div><h4>Feeders</h4><p>Gravity feeders for the long and short profiles: a 135° ramp turns each profile horizontal in the exact pick spot and the next one drops in. The screw feeder uses an inclined channel and a conical guide so every screw arrives oriented.</p></div>
+        <div class="sub mine"><div class="who">My design</div><h4>Assembly fixture</h4><p>Two MDF layers, four 130 mm profiles and 3D-printed corners that locate the MDF base and the profiles in the same place every cycle.</p></div>
         <div class="sub mine"><div class="who">My area</div><h4>CAD to manufacturing</h4><p>Parts modeled in SolidWorks and sent straight to laser cutting (DXF, nested to save MDF) or 3D printing: feeders, stock boxes, LED and HMI boxes, sensor mounts, door handles and fixture corners.</p></div>
         <div class="sub mine"><div class="who">My area</div><h4>Layout and ergonomics</h4><p>Feeders placed to shorten robot moves and avoid singularities, with a straight flow from feeders to fixture. The operator station was laid out with time-motion studies.</p></div>
-        <div class="sub mine"><div class="who">Mechanical team · my lead</div><h4>Gripper + screwdriver</h4><p>Custom pneumatic gripper with anti-slip pads and a Phillips screwdriver on the back, so the robot grips and screws without a tool change. Both valves are switched by the PLC.</p></div>
-        <div class="sub"><div class="who">Team</div><h4>Fixture</h4><p>Two MDF layers, four 130 mm profiles and 3D-printed corners that locate the MDF base and the profiles every cycle.</p></div>
-        <div class="sub"><div class="who">Controls team</div><h4>PLC, HMI and safety</h4><p>PLC with HMI screens for production, storage and status. Door sensors only let the robot run with the doors closed, and status lights show when it is safe to enter.</p></div>
-        <div class="sub"><div class="who">Team</div><h4>Digital twins</h4><p>Process Simulate (also in VR) to check robot paths and cycle times before building, and Plant Simulation of the full five-station line from measured times.</p></div>
+        <div class="sub"><div class="who">Mechanical team</div><h4>Gripper + screwdriver</h4><p>Custom pneumatic gripper with anti-slip pads and a Phillips screwdriver on the back, so the robot grips and screws without a tool change.</p></div>
+        <div class="sub"><div class="who">Electrical team</div><h4>Wiring and cabinet</h4><p>Every sensor, light and the HMI routed to one power and PLC cabinet, with 600 V THW-LS copper wire and a label on each cable to avoid wiring errors and speed up maintenance.</p></div>
+        <div class="sub"><div class="who">Safety team</div><h4>Safety system</h4><p>Door sensors let the robot run only with both doors closed, and red and green lights above the doors show when it is safe to enter, following ISO 10218-1 and ISO 13849-1.</p></div>
+        <div class="sub"><div class="who">Controls team</div><h4>PLC, HMI and digital twins</h4><p>PLC with HMI screens for production, storage and status, plus Process Simulate and Plant Simulation models to check robot paths and the full five-station line.</p></div>
       </div>
       <div class="f-stats">
         <div><b>10 units</b><span>built on production day, five per shift</span></div>
